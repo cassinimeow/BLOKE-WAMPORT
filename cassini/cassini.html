@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Elizander Aguila</title>
-        <link rel="icon" type="image/png" href="cassini_assets/cassini_icon.png" />
+        <link rel="icon" type="image/png" href="cassini_assets/images/cassini_icon.png" />
         <link rel="stylesheet" href="cassini.css" />
     </head>
     <body>
@@ -22,143 +22,213 @@
             </section>
 
             <section class="cassini-section">
-    <h2 class="mc-subtitle">Hobbies</h2>
-    <div class="cassini-list">
-        <div class="cassini-item">
-            <div class="image-container">
-                <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
-                <img src="cassini_assets/images/game1.jpg"
-                     data-images='["cassini_assets/images/game1.jpg","cassini_assets/images/game2.jpg","cassini_assets/images/game3.jpg"]'
-                     alt="Playing Games" />
-                <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
-            </div>
-            <button class="mc-button" onclick="toggleCassini(this)">Playing Games</button>
-            <p class="cassini-desc mc-text">
-                I enjoy exploring different genres — adventure, survival, and sandbox games. They help me
-                unwind, think creatively, and connect with friends online.
-            </p>
+                <h2 class="mc-subtitle">Hobbies</h2>
+                <div class="cassini-list">
+                    <div class="cassini-item">
+                        <div class="image-container">
+                            <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
+                            <img
+                                src="cassini_assets/images/game1.jpg"
+                                data-images='["cassini_assets/images/game1.jpg","cassini_assets/images/game2.jpg","cassini_assets/images/game3.jpg"]'
+                                alt="Playing Games"
+                            />
+                            <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
+                        </div>
+                        <button class="mc-button" onclick="toggleCassini(this)">Playing Games</button>
+                        <p class="cassini-desc mc-text">
+                            I enjoy exploring different genres — adventure, survival, and sandbox games. They help me
+                            unwind, think creatively, and connect with friends online.
+                        </p>
+                    </div>
+
+                    <div class="cassini-item">
+                        <div class="image-container">
+                            <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
+                            <img
+                                src="cassini_assets/images/anime1.jpg"
+                                data-images='["cassini_assets/images/anime1.jpg","cassini_assets/images/anime2.jpg"]'
+                                alt="Watching Anime"
+                            />
+                            <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
+                        </div>
+                        <button class="mc-button" onclick="toggleCassini(this)">Watching Anime & Movies</button>
+                        <p class="cassini-desc mc-text">
+                            I love immersing myself in stories full of imagination and emotion. They inspire my
+                            creativity and broaden my perspective.
+                        </p>
+                    </div>
+
+                    <div class="cassini-item">
+                        <div class="image-container">
+                            <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
+                            <img
+                                src="cassini_assets/images/tinkering.jpg"
+                                data-images='["cassini_assets/images/tinkering.jpg","cassini_assets/images/tinkering2.jpg"]'
+                                alt="Tinkering"
+                            />
+                            <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
+                        </div>
+                        <button class="mc-button" onclick="toggleCassini(this)">Tinkering with My Computer</button>
+                        <p class="cassini-desc mc-text">
+                            I enjoy customizing and improving my system. Learning how computers work gives me a sense of
+                            control and curiosity about technology.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cassini-section">
+                <h2 class="mc-subtitle">Goals</h2>
+                <div class="cassini-list">
+                    <div class="cassini-item">
+                        <div class="image-container">
+                            <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
+                            <img
+                                src="cassini_assets/images/goal1.jpg"
+                                data-images='["cassini_assets/images/goal1.jpg","cassini_assets/images/goal1b.jpg","cassini_assets/images/goal1c.jpg"]'
+                                alt="Networking"
+                            />
+                            <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
+                        </div>
+                        <button class="mc-button" onclick="toggleCassini(this)">Gain Knowledge on Networking</button>
+                        <p class="cassini-desc mc-text">
+                            I want to strengthen my understanding of network systems, routing, and security.
+                        </p>
+                    </div>
+
+                    <div class="cassini-item">
+                        <div class="image-container">
+                            <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
+                            <img
+                                src="cassini_assets/images/goal2.jpg"
+                                data-images='["cassini_assets/images/goal2.jpg","cassini_assets/images/goal2b.jpg"]'
+                                alt="Homelab"
+                            />
+                            <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
+                        </div>
+                        <button class="mc-button" onclick="toggleCassini(this)">Have My Own Homelab</button>
+                        <p class="cassini-desc mc-text">
+                            Building a homelab will let me test setups and run servers for hands-on learning.
+                        </p>
+                    </div>
+
+                    <div class="cassini-item">
+                        <div class="image-container">
+                            <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
+                            <img
+                                src="cassini_assets/images/goal3.jpg"
+                                data-images='["cassini_assets/images/goal3.jpg","cassini_assets/images/goal3b.jpg"]'
+                                alt="Engineer"
+                            />
+                            <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
+                        </div>
+                        <button class="mc-button" onclick="toggleCassini(this)">Become a Network Engineer</button>
+                        <p class="cassini-desc mc-text">
+                            My long-term goal is to design secure, efficient networks as a professional engineer.
+                        </p>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <div class="cassini-item">
-            <div class="image-container">
-                <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
-                <img src="cassini_assets/images/anime1.jpg"
-                     data-images='["cassini_assets/images/anime1.jpg","cassini_assets/images/anime2.jpg"]'
-                     alt="Watching Anime" />
-                <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
-            </div>
-            <button class="mc-button" onclick="toggleCassini(this)">Watching Anime & Movies</button>
-            <p class="cassini-desc mc-text">
-                I love immersing myself in stories full of imagination and emotion. They inspire my
-                creativity and broaden my perspective.
-            </p>
+        <!-- Modal for Enlarged Image -->
+        <div id="imageModal" class="image-modal">
+            <span class="close-modal">&times;</span>
+            <button class="arrow left" onclick="prevModalImage()">&#10094;</button>
+            <img id="modalImg" src="" alt="Expanded view" />
+            <button class="arrow right" onclick="nextModalImage()">&#10095;</button>
         </div>
 
-        <div class="cassini-item">
-            <div class="image-container">
-                <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
-                <img src="cassini_assets/images/tinkering.jpg"
-                     data-images='["cassini_assets/images/tinkering.jpg","cassini_assets/images/tinkering2.jpg"]'
-                     alt="Tinkering" />
-                <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
-            </div>
-            <button class="mc-button" onclick="toggleCassini(this)">Tinkering with My Computer</button>
-            <p class="cassini-desc mc-text">
-                I enjoy customizing and improving my system. Learning how computers work gives me a sense of
-                control and curiosity about technology.
-            </p>
-        </div>
-    </div>
-</section>
+        <script>
+            /* =============== Toggle Descriptions =============== */
+            function toggleCassini(button) {
+                const desc = button.nextElementSibling;
+                desc.classList.toggle("show");
+            }
 
-<section class="cassini-section">
-    <h2 class="mc-subtitle">Goals</h2>
-    <div class="cassini-list">
-        <div class="cassini-item">
-            <div class="image-container">
-                <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
-                <img src="cassini_assets/images/goal1.jpg"
-                     data-images='["cassini_assets/images/goal1.jpg","cassini_assets/images/goal1b.jpg"]'
-                     alt="Networking" />
-                <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
-            </div>
-            <button class="mc-button" onclick="toggleCassini(this)">Gain Knowledge on Networking</button>
-            <p class="cassini-desc mc-text">
-                I want to strengthen my understanding of network systems, routing, and security.
-            </p>
-        </div>
+            /* =============== Image Carousel =============== */
+            function fadeImage(img, newSrc) {
+                img.style.opacity = 0;
+                setTimeout(() => {
+                    img.src = newSrc;
+                    img.style.opacity = 1;
+                }, 300);
+            }
 
-        <div class="cassini-item">
-            <div class="image-container">
-                <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
-                <img src="cassini_assets/images/goal2.jpg"
-                     data-images='["cassini_assets/images/goal2.jpg","cassini_assets/images/goal2b.jpg"]'
-                     alt="Homelab" />
-                <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
-            </div>
-            <button class="mc-button" onclick="toggleCassini(this)">Have My Own Homelab</button>
-            <p class="cassini-desc mc-text">
-                Building a homelab will let me test setups and run servers for hands-on learning.
-            </p>
-        </div>
+            function nextImage(button) {
+                const img = button.parentElement.querySelector("img");
+                const images = JSON.parse(img.dataset.images);
+                let index = parseInt(img.dataset.index || 0);
+                index = (index + 1) % images.length;
+                img.dataset.index = index;
+                fadeImage(img, images[index]);
+            }
 
-        <div class="cassini-item">
-            <div class="image-container">
-                <button class="arrow left" onclick="prevImage(this)">&#9664;</button>
-                <img src="cassini_assets/images/goal3.jpg"
-                     data-images='["cassini_assets/images/goal3.jpg","cassini_assets/images/goal3b.jpg"]'
-                     alt="Engineer" />
-                <button class="arrow right" onclick="nextImage(this)">&#9654;</button>
-            </div>
-            <button class="mc-button" onclick="toggleCassini(this)">Become a Network Engineer</button>
-            <p class="cassini-desc mc-text">
-                My long-term goal is to design secure, efficient networks as a professional engineer.
-            </p>
-        </div>
-    </div>
-</section>
+            function prevImage(button) {
+                const img = button.parentElement.querySelector("img");
+                const images = JSON.parse(img.dataset.images);
+                let index = parseInt(img.dataset.index || 0);
+                index = (index - 1 + images.length) % images.length;
+                img.dataset.index = index;
+                fadeImage(img, images[index]);
+            }
 
-<script>
-function toggleCassini(button) {
-    const desc = button.nextElementSibling;
-    desc.classList.toggle("show");
-}
+            /* =============== Image Modal (Click-to-Enlarge) =============== */
+            document.addEventListener("DOMContentLoaded", () => {
+                const modal = document.getElementById("imageModal");
+                const modalImg = document.getElementById("modalImg");
+                const closeModal = document.querySelector(".close-modal");
 
-function fadeImage(img, newSrc) {
-    img.style.opacity = 0;
-    setTimeout(() => {
-        img.src = newSrc;
-        img.style.opacity = 1;
-    }, 300);
-}
+                document.querySelectorAll(".image-container img").forEach(img => {
+                    img.addEventListener("click", () => {
+                        modal.style.display = "flex";
+                        modalImg.src = img.src;
+                    });
+                });
 
-// ✅ Ensure each image remembers its current index
-function nextImage(button) {
-    const img = button.parentElement.querySelector("img");
-    const images = JSON.parse(img.dataset.images);
+                closeModal.addEventListener("click", () => {
+                    modal.style.display = "none";
+                });
 
-    // if current index isn't saved yet, start at 0
-    let index = parseInt(img.dataset.index || 0);
-    index = (index + 1) % images.length;
+                window.addEventListener("click", e => {
+                    if (e.target === modal) modal.style.display = "none";
+                });
+            });
+            let modalIndex = 0;
+            let modalImages = [];
 
-    img.dataset.index = index; // save current index
-    fadeImage(img, images[index]);
-}
+            document.querySelectorAll(".image-container img").forEach(img => {
+                img.addEventListener("click", () => {
+                    const modal = document.getElementById("imageModal");
+                    const modalImg = document.getElementById("modalImg");
 
-function prevImage(button) {
-    const img = button.parentElement.querySelector("img");
-    const images = JSON.parse(img.dataset.images);
+                    modalImages = JSON.parse(img.dataset.images);
+                    modalIndex = modalImages.findIndex(src => img.src.includes(src.split("/").pop()));
+                    modalImg.src = img.src;
 
-    // if current index isn't saved yet, start at 0
-    let index = parseInt(img.dataset.index || 0);
-    index = (index - 1 + images.length) % images.length;
+                    modal.classList.add("show");
+                });
+            });
 
-    img.dataset.index = index; // save current index
-    fadeImage(img, images[index]);
-}
-</script>
+            document.querySelector(".close-modal").addEventListener("click", () => {
+                document.getElementById("imageModal").classList.remove("show");
+            });
 
+            window.addEventListener("click", e => {
+                const modal = document.getElementById("imageModal");
+                if (e.target === modal) modal.classList.remove("show");
+            });
 
+            function nextModalImage() {
+                modalIndex = (modalIndex + 1) % modalImages.length;
+                document.getElementById("modalImg").src = modalImages[modalIndex];
+            }
+
+            function prevModalImage() {
+                modalIndex = (modalIndex - 1 + modalImages.length) % modalImages.length;
+                document.getElementById("modalImg").src = modalImages[modalIndex];
+            }
+        </script>
 
         <div class="overlay"></div>
         <div class="vignette"></div>
@@ -166,12 +236,12 @@ function prevImage(button) {
         <script>
             // Cassini smooth panorama background
             const files = [
-                "cassini_assets/panorama_0.png",
-                "cassini_assets/panorama_1.png",
-                "cassini_assets/panorama_2.png",
-                "cassini_assets/panorama_3.png",
-                "cassini_assets/panorama_4.png",
-                "cassini_assets/panorama_5.png",
+                "cassini_assets/background/panorama_0.png",
+                "cassini_assets/background/panorama_1.png",
+                "cassini_assets/background/panorama_2.png",
+                "cassini_assets/background/panorama_3.png",
+                "cassini_assets/background/panorama_4.png",
+                "cassini_assets/background/panorama_5.png",
             ];
 
             const canvas = document.getElementById("cassini");
@@ -184,7 +254,7 @@ function prevImage(button) {
             let panoramaWidth = 0;
             let panoramaHeight = 0;
             let panX = 0;
-            let speed = 50; // lower = slower
+            let speed = 80; // lower = slower
             let lastTime = 0;
             let scale = 1;
 
@@ -304,6 +374,69 @@ function prevImage(button) {
                     resize();
                     requestAnimationFrame(renderFrame);
                 });
+        </script>
+
+        <!-- 🔊 Speaker Toggle -->
+        <button id="soundToggle" class="sound-toggle">
+            <img id="soundIcon" src="cassini_assets/images/sound-on.png" alt="Sound On" />
+        </button>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // 🎵 Load sounds
+                const clickSound = new Audio("cassini_assets/sounds/click.ogg");
+                const bgMusic = new Audio("cassini_assets/sounds/bg-music.mp3"); // ← updated name
+
+                bgMusic.loop = true;
+                bgMusic.volume = 0.4; // softer background music
+                let soundEnabled = true;
+                let musicStarted = false;
+
+                // 🔘 Create a speaker icon (bottom-right corner)
+                const speaker = document.createElement("div");
+                speaker.id = "speaker-toggle";
+                speaker.innerHTML = "🔊";
+                speaker.style.position = "fixed";
+                speaker.style.bottom = "20px";
+                speaker.style.right = "20px";
+                speaker.style.fontSize = "2rem";
+                speaker.style.cursor = "pointer";
+                speaker.style.color = "white";
+                speaker.style.zIndex = "2000";
+                document.body.appendChild(speaker);
+
+                // 🎚️ Toggle mute/unmute
+                speaker.addEventListener("click", () => {
+                    soundEnabled = !soundEnabled;
+                    if (soundEnabled) {
+                        speaker.innerHTML = "🔊";
+                        bgMusic.play().catch(() => {});
+                    } else {
+                        speaker.innerHTML = "🔇";
+                        bgMusic.pause();
+                    }
+                });
+
+                // ▶️ Allow music to start after first user interaction
+                const startMusic = () => {
+                    if (!musicStarted) {
+                        musicStarted = true;
+                        bgMusic.play().catch(() => {});
+                    }
+                };
+                document.addEventListener("click", startMusic, { once: true });
+
+                // 🖱️ Play click sound for buttons & arrows
+                const playClick = () => {
+                    if (soundEnabled) {
+                        clickSound.currentTime = 0;
+                        clickSound.play().catch(() => {});
+                    }
+                };
+
+                document.querySelectorAll("button, .arrow").forEach(el => {
+                    el.addEventListener("click", playClick);
+                });
+            });
         </script>
     </body>
 </html>
