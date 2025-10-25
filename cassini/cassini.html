@@ -4,23 +4,23 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Elizander Aguila</title>
-        <link rel="icon" type="image/png" href="cassini_assets/images/cassini_icon.png" />
+        <link rel="icon" type="image/png" href="cassini_assets/icons/cassini_icon.png" />
         <link rel="stylesheet" href="cassini.css" />
     </head>
     <body>
+        <!-- Page Blur Overlay -->
         <canvas id="cassini"></canvas>
         <canvas id="cassini-panorama"></canvas>
         <div class="overlay"></div>
         <div class="vignette"></div>
         <div class="cassini-blur-overlay"></div>
-        <!-- This line adds the full-page blur -->
 
         <div class="cassini-content">
             <section class="profile">
                 <img src="cassini_assets/images/me.jpg" alt="Elizander Aguila" class="profile-pic" />
                 <h1 class="mc-title">Elizander Aguila</h1>
             </section>
-
+            <!-- Hobbies Section -->
             <section class="cassini-section">
                 <h2 class="mc-subtitle">Hobbies</h2>
                 <div class="cassini-list">
@@ -77,6 +77,7 @@
                 </div>
             </section>
 
+            <!-- Goals Section -->
             <section class="cassini-section">
                 <h2 class="mc-subtitle">Goals</h2>
                 <div class="cassini-list">
@@ -129,7 +130,58 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Favorite Websites Section -->
+            <section class="cassini-section">
+                <h2 class="mc-subtitle">Favorite Websites</h2>
+                <div class="cassini-list">
+                    <div class="cassini-item">
+                        <img src="cassini_assets/icons/github.png" alt="GitHub" />
+                        <button class="mc-button" onclick="toggleCassini(this)">GitHub</button>
+                        <p class="cassini-desc mc-text">
+                            I use GitHub for learning, documenting my projects, and exploring different open-source
+                            software made by the community.
+                        </p>
+                    </div>
+
+                    <div class="cassini-item">
+                        <img src="cassini_assets/icons/chatgpt.png" alt="ChatGPT" />
+                        <button class="mc-button" onclick="toggleCassini(this)">ChatGPT</button>
+                        <p class="cassini-desc mc-text">
+                            I often use ChatGPT for learning new concepts, generating ideas, and experimenting with
+                            creative and coding projects.
+                        </p>
+                    </div>
+
+                    <div class="cassini-item">
+                        <img src="cassini_assets/icons/youtube.png" alt="YouTube" />
+                        <button class="mc-button" onclick="toggleCassini(this)">YouTube</button>
+                        <p class="cassini-desc mc-text">
+                            YouTube helps me unwind and learn through tutorials, tech reviews, and entertainment
+                            content.
+                        </p>
+                    </div>
+                </div>
+            </section>
         </div>
+        <!-- Footer Section -->
+        <footer class="cassini-footer">
+            <h2 class="mc-subtitle">Connect with Me</h2>
+            <div class="social-links">
+                <a href="https://github.com/cassinimeow" target="_blank" class="social-link">
+                    <img src="cassini_assets/icons/github.png" alt="GitHub" />
+                    <span>GitHub</span>
+                </a>
+                <a href="https://www.linkedin.com/in/elizanderaguila" target="_blank" class="social-link">
+                    <img src="cassini_assets/icons/linkedin.png" alt="LinkedIn" />
+                    <span>LinkedIn</span>
+                </a>
+                <a href="mailto:elizanderaguila@gmail.com" class="social-link">
+                    <img src="cassini_assets/icons/gmail.png" alt="Email" />
+                    <span>Email</span>
+                </a>
+            </div>
+        </footer>
 
         <!-- Modal for Enlarged Image -->
         <div id="imageModal" class="image-modal">
@@ -384,14 +436,14 @@
             document.addEventListener("DOMContentLoaded", () => {
                 // 🎵 Load sounds
                 const clickSound = new Audio("cassini_assets/sounds/click.ogg");
-                const bgMusic = new Audio("cassini_assets/sounds/bg-music.mp3"); // ← updated name
+                const bgMusic = new Audio("cassini_assets/sounds/bg-music.mp3");
 
                 bgMusic.loop = true;
-                bgMusic.volume = 0.4; // softer background music
+                bgMusic.volume = 0.3; // softer background music
                 let soundEnabled = true;
                 let musicStarted = false;
 
-                // 🔘 Create a speaker icon (bottom-right corner)
+                // 🔊 Speaker Icon (bottom-right)
                 const speaker = document.createElement("div");
                 speaker.id = "speaker-toggle";
                 speaker.innerHTML = "🔊";
@@ -416,7 +468,7 @@
                     }
                 });
 
-                // ▶️ Allow music to start after first user interaction
+                // ▶️ Start music after first click (browser autoplay policy)
                 const startMusic = () => {
                     if (!musicStarted) {
                         musicStarted = true;
@@ -425,17 +477,29 @@
                 };
                 document.addEventListener("click", startMusic, { once: true });
 
-                // 🖱️ Play click sound for buttons & arrows
+                // 🖱️ Play click sound for all buttons & arrows
                 const playClick = () => {
                     if (soundEnabled) {
                         clickSound.currentTime = 0;
                         clickSound.play().catch(() => {});
                     }
                 };
-
                 document.querySelectorAll("button, .arrow").forEach(el => {
                     el.addEventListener("click", playClick);
                 });
+
+                // 🎧 Pause music when tab or window is inactive
+                function handleVisibility() {
+                    if (document.hidden || !document.hasFocus()) {
+                        bgMusic.pause();
+                    } else if (soundEnabled && musicStarted) {
+                        bgMusic.play().catch(() => {});
+                    }
+                }
+
+                document.addEventListener("visibilitychange", handleVisibility);
+                window.addEventListener("blur", handleVisibility);
+                window.addEventListener("focus", handleVisibility);
             });
         </script>
     </body>

@@ -108,12 +108,12 @@ canvas {
     justify-content: center;
     margin-bottom: 3rem;
     text-align: left;
-    margin-left: 10rem;
+    margin-left: 9rem;
 }
 
 .profile-pic {
-    width: 170px;
-    height: 170px;
+    width: 250px;
+    height: 250px;
     border-radius: 20%;
     border: 1px solid var(--mc-purple);
     object-fit: cover;
@@ -222,7 +222,7 @@ canvas {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-4px);
+        transform: translateY(-2px);
     }
 }
 
@@ -403,7 +403,7 @@ canvas {
 .image-modal:hover .arrow {
     opacity: 1;
 }
-/* =============== ✅ FIXED & ENHANCED IMAGE MODAL + CAROUSEL INTEGRATION =============== */
+/* =============== IMAGE MODAL + CAROUSEL INTEGRATION =============== */
 
 /* Ensure images are clickable for enlargement */
 .image-container img {
@@ -483,4 +483,54 @@ canvas {
 .image-modal .arrow:hover {
     background: rgba(0, 0, 0, 0.9);
     transform: translateY(-50%) scale(1.1);
+}
+/* =============== Cassini Footer =============== */
+.cassini-footer {
+    margin-top: 4rem;
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cassini-footer .mc-subtitle {
+    color: #d9b3ff;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 0 #000;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #e0e0e0;
+    font-family: "Minecraftia", monospace;
+    font-size: 1rem;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.social-link img {
+    width: 28px;
+    height: 28px;
+    filter: drop-shadow(1px 1px 2px #000);
+}
+
+.social-link:hover {
+    transform: scale(1.1);
+    color: #a871ff;
+}
+.cassini-footer {
+    position: relative;
+    z-index: 6; /* higher than .cassini-blur-overlay (z-index: 1) */
+    background: rgba(0, 0, 0, 0.3); /* optional: helps it stand out */
+    backdrop-filter: blur(4px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px 8px 0 0;
 }
