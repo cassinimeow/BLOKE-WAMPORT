@@ -173,3 +173,63 @@ p {
 .quotes p:hover {
     color: #aaffaa;
 }
+.members {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.members li {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 1rem;
+    width: 150px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    text-align: center;
+}
+
+.members li:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(60, 179, 113, 0.8), 0 0 40px rgba(60, 179, 113, 0.4);
+}
+
+.members a {
+    text-decoration: none;
+    color: #aaffaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.members img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    border: 2px solid #3cb371;
+    transition: box-shadow 0.3s ease;
+}
+
+.members li:hover img {
+    box-shadow: 0 0 15px rgba(60, 179, 113, 0.8), 0 0 30px rgba(60, 179, 113, 0.4);
+}
+
+/* ✨ Quotes under each member (yearbook style) */
+.members .quote {
+    font-size: 0.85rem;
+    color: #ccffcc;
+    margin-top: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.4rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-shadow: 1px 1px 1px #003300;
+}

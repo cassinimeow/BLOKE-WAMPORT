@@ -10,6 +10,7 @@
     src: url("cassini_assets/fonts/Mojangles.ttf") format("truetype");
     font-display: swap;
 }
+
 /* =============== Cassini Content Layout =============== */
 .cassini-content {
     position: relative;
@@ -19,6 +20,7 @@
     max-width: 900px;
     margin: 0 auto;
 }
+
 /* =============== Cassini Full Blur Overlay (Subtle & Balanced) =============== */
 .cassini-blur-overlay {
     position: fixed;
@@ -39,7 +41,7 @@ body {
 }
 
 canvas {
-    position: fixed; /* make the panorama stay in place as you scroll */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -47,6 +49,7 @@ canvas {
     display: block;
     z-index: 0;
     image-rendering: auto;
+    pointer-events: none; /* <<< add this */
 }
 
 .overlay,
@@ -101,6 +104,7 @@ canvas {
     line-height: 1.6;
     text-shadow: 1px 1px 0 #000;
 }
+
 /* =============== Profile =============== */
 .profile {
     display: flex;
@@ -131,7 +135,7 @@ canvas {
     margin-bottom: 1rem;
 }
 
-/* =============== Cassini Shared Sections (Hobbies & Goals) - Horizontal Layout =============== */
+/* =============== Cassini Shared Sections (Hobbies & Goals) - Horizontal Layout Fix =============== */
 .cassini-section {
     margin-top: 3rem;
 }
@@ -145,11 +149,12 @@ canvas {
     text-shadow: 3px 3px 0 #5b3e91, 6px 6px 0 #2c1b55, 0 0 15px #b58cff;
 }
 
-/* ---- Horizontal layout ---- */
+/* Horizontal layout for cards */
 .cassini-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; /* center the row */
+    flex-wrap: nowrap; /* keep all in one row */
+    align-items: flex-start; /* ✅ allow cards to expand individually */
     gap: 2rem;
 }
 
@@ -161,8 +166,12 @@ canvas {
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 280px; /* standard card width */
-    flex: 1 1 280px;
+    max-width: 280px;
+    box-sizing: border-box;
+    width: 300px;
+    flex: 0 0 auto;
+    align-self: flex-start; /* ✅ ensures card grows independently */
+    min-height: 320px; /* ✅ uniform closed height */
 }
 
 .cassini-item:hover {
@@ -170,32 +179,42 @@ canvas {
     box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
 }
 
-.cassini-item img {
+/* image container keeps images visible */
+.cassini-item .image-container {
     width: 100%;
-    height: auto;
-    border-radius: 10px;
+    aspect-ratio: 4 / 3; /* keeps image box proportional */
+    overflow: hidden;
     margin-bottom: 1rem;
 }
 
-/* ---- Button styling ---- */
+.cassini-item .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
+}
+
+/* button spacing inside cards */
 .mc-button {
-    background: #8b5cf6;
-    color: white;
-    border: none;
-    font-family: "Minecraftia", sans-serif;
-    font-size: 1rem;
-    padding: 0.5rem 1.2rem;
-    border-radius: 8px;
+    display: inline-flex;
+    padding: 0.5rem 1rem;
+    font-family: Minecraftia, monospace;
+    color: #e0d0ff; /* lighter purple for readability */
+    background-color: rgba(90, 40, 150, 0.8); /* semi-transparent purple background */
+    border: 1px solid #a871ff; /* keeps purple theme */
+    border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    transition: all 0.2s ease;
+    margin-top: 0.5rem;
 }
 
 .mc-button:hover {
-    background: #a78bfa;
-    transform: scale(1.05);
+    background-color: rgba(139, 92, 246, 1);
+    color: #fff;
 }
 
-/* ---- Dropdown description ---- */
+/* dropdown description */
 .cassini-desc {
     max-height: 0;
     overflow: hidden;
@@ -207,15 +226,16 @@ canvas {
     line-height: 1.4;
     text-align: justify;
     text-justify: inter-word;
-    transition: all 0.3s ease;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
 }
 
 .cassini-desc.show {
-    max-height: 200px;
+    max-height: 500px; /* ✅ large enough to fit longer text naturally */
     opacity: 1;
     margin-top: 1rem;
 }
 
+/* floating title */
 @keyframes mcFloat {
     0%,
     100% {
@@ -228,6 +248,59 @@ canvas {
 
 .profile .mc-title {
     animation: mcFloat 2s ease-in-out infinite;
+}
+
+/* Favorite Websites Section – Compact Card Style */
+.favorite-websites .cassini-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.favorite-websites .cassini-item {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 20px; /* ✅ more rounded */
+    padding: 1.2rem;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 200px; /* ✅ smaller, compact box */
+    height: 200px; /* ✅ uniform compact size */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.favorite-websites .cassini-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+.favorite-websites .cassini-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+.favorite-websites .mc-button {
+    background-color: #7b3ff3; /* ✅ your purple theme */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-family: "Minecraftia", sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.favorite-websites .mc-button:hover {
+    background-color: #9f6bff;
+    transform: scale(1.05);
 }
 
 /* =============== Cassini Image Carousel =============== */
@@ -243,6 +316,7 @@ canvas {
     border-radius: 10px;
     margin-bottom: 1rem;
     transition: opacity 0.3s ease;
+    cursor: pointer; /* ensure images are clickable */
 }
 
 /* Arrow buttons (overlayed left/right) */
@@ -259,6 +333,7 @@ canvas {
     cursor: pointer;
     z-index: 5;
     transition: background 0.3s, transform 0.2s;
+    opacity: 0;
 }
 
 .arrow:hover {
@@ -274,13 +349,8 @@ canvas {
     right: 10px;
 }
 
-/* Optional: fade arrows in/out when hovering over image */
 .image-container:hover .arrow {
     opacity: 1;
-}
-
-.arrow {
-    opacity: 0;
 }
 
 /* Smooth transition for image opacity */
@@ -288,7 +358,6 @@ canvas {
     opacity: 1;
     transition: opacity 0.3s ease;
 }
-
 /* Consistent button spacing below image */
 .mc-button {
     margin-top: 0.5rem;
@@ -545,7 +614,7 @@ canvas {
     position: fixed;
     top: 20px;
     left: 20px;
-    background: rgba(0, 0, 0, 0.6);
+    background-color: rgba(90, 40, 150, 0.8); /* semi-transparent purple background */
     color: var(--accent-color);
     text-decoration: none;
     font-family: "Minecraftia", sans-serif;

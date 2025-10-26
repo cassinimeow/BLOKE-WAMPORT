@@ -132,34 +132,26 @@
             </section>
 
             <!-- Favorite Websites Section -->
-            <section class="cassini-section">
+            <section class="cassini-section favorite-websites">
                 <h2 class="mc-subtitle">Favorite Websites</h2>
                 <div class="cassini-list">
                     <div class="cassini-item">
                         <img src="cassini_assets/icons/github.png" alt="GitHub" />
-                        <button class="mc-button" onclick="toggleCassini(this)">GitHub</button>
-                        <p class="cassini-desc mc-text">
-                            I use GitHub for learning, documenting my projects, and exploring different open-source
-                            software made by the community.
-                        </p>
+                        <button class="mc-button" onclick="window.open('https://github.com', '_blank')">GitHub</button>
                     </div>
 
                     <div class="cassini-item">
                         <img src="cassini_assets/icons/chatgpt.png" alt="ChatGPT" />
-                        <button class="mc-button" onclick="toggleCassini(this)">ChatGPT</button>
-                        <p class="cassini-desc mc-text">
-                            I often use ChatGPT for learning new concepts, generating ideas, and experimenting with
-                            creative and coding projects.
-                        </p>
+                        <button class="mc-button" onclick="window.open('https://chat.openai.com', '_blank')">
+                            ChatGPT
+                        </button>
                     </div>
 
                     <div class="cassini-item">
                         <img src="cassini_assets/icons/youtube.png" alt="YouTube" />
-                        <button class="mc-button" onclick="toggleCassini(this)">YouTube</button>
-                        <p class="cassini-desc mc-text">
-                            YouTube helps me unwind and learn through tutorials, tech reviews, and entertainment
-                            content.
-                        </p>
+                        <button class="mc-button" onclick="window.open('https://youtube.com', '_blank')">
+                            YouTube
+                        </button>
                     </div>
                 </div>
             </section>
@@ -191,13 +183,16 @@
             <button class="arrow right" onclick="nextModalImage()">&#10095;</button>
         </div>
 
+        <!-- Toggle Description -->
         <script>
-            /* =============== Toggle Descriptions =============== */
             function toggleCassini(button) {
-                const desc = button.nextElementSibling;
+                const item = button.closest(".cassini-item");
+                const desc = item.querySelector(".cassini-desc");
                 desc.classList.toggle("show");
             }
+        </script>
 
+        <script>
             /* =============== Image Carousel =============== */
             function fadeImage(img, newSrc) {
                 img.style.opacity = 0;
@@ -472,7 +467,9 @@
                 const startMusic = () => {
                     if (!musicStarted) {
                         musicStarted = true;
-                        bgMusic.play().catch(() => {});
+                        bgMusic.play().catch(() => {
+                            document.addEventListener("click", startMusic, { once: true });
+                        });
                     }
                 };
                 document.addEventListener("click", startMusic, { once: true });
