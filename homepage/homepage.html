@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BLOKE WAMPORT</title>
+        <link rel="icon" type="image/png" href="homepage_assets/images/logo.png" />
+        <link rel="stylesheet" href="homepage.css" />
+    </head>
+    <script>
+        // 🎵 Sound effect for link clicks
+        function playClickSound() {
+            const clickSound = document.getElementById("click-sound");
+            clickSound.currentTime = 0; // rewind to start for rapid clicks
+            clickSound.play();
+        }
+
+        // Attach sound to all member links
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".members a").forEach(link => {
+                link.addEventListener("click", playClickSound);
+            });
+        });
+    </script>
+
+    <body>
+        <div class="background"></div>
+
+        <main class="content">
+            <h1>BLOKE WAMPORT</h1>
+            <img src="homepage_assets/images/logo.png" alt="Group Logo" class="logo" />
+            <p>
+                We are BLOKE WAMPORT — a creative group of students who love games, coding, and crafting ideas into
+                reality. Explore our hobbies, goals, and favorite websites below!
+            </p>
+
+            <ul class="members">
+                <li>
+                    <a href="../cassini/cassini.html">
+                        <img src="../cassini/cassini_assets/images/me.jpg" alt="Cassini" />
+                        Hi, I'm Elizander!
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="homepage_assets/images/member2.jpg" alt="Member 2" />
+                        Member 2
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="homepage_assets/images/member3.jpg" alt="Member 3" />
+                        Member 3
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="homepage_assets/images/member4.jpg" alt="Member 4" />
+                        Member 4
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="homepage_assets/images/member5.jpg" alt="Member 5" />
+                        Member 5
+                    </a>
+                </li>
+                <li>
+                    <a href="../cassini/cassini.html">
+                        <img src="../cassini/cassini_assets/images/me.jpg" alt="Member 6" />
+                        Hi, I'm Elizander!
+                    </a>
+                </li>
+            </ul>
+
+            <div class="quotes">
+                <h1>Favorite Quotes</h1>
+                <p><strong>Elizander:</strong> “Normal lang yan sa abnormal.”</p>
+                <p><strong>Member 2:</strong> “...”</p>
+                <p><strong>Member 3:</strong> “...”</p>
+                <p><strong>Member 4:</strong> “...”</p>
+                <p><strong>Member 5:</strong> “...”</p>
+                <p><strong>Member 6:</strong> “...”</p>
+            </div>
+        </main>
+
+        <!-- 🎵 Load sounds -->
+        <audio id="click-sound" src="../cassini/cassini_assets/sounds/click.ogg" preload="auto"></audio>
+    </body>
+</html>

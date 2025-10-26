@@ -1,0 +1,175 @@
+/* ===== Fonts ===== */
+@font-face {
+    font-family: "Mojangles";
+    src: url("homepage_assets/fonts/Mojangles.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Minecraftia";
+    src: url("homepage_assets/fonts/Minecraftia.ttf") format("truetype");
+}
+
+/* ===== Base Text Styles ===== */
+h1 {
+    font-family: "Mojangles", sans-serif;
+    font-size: 3rem;
+    color: #3cb371; /* Minecraft grass green */
+    text-shadow: 0 0 6px #3cb371, 0 0 12px #2e8b57, 0 0 18px #2e8b57, 0 0 24px #1e5631;
+    margin-bottom: 1rem;
+}
+
+p,
+li,
+a {
+    font-family: "Minecraftia", sans-serif;
+}
+
+/* ===== Background Animation ===== */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Minecraftia", sans-serif;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    background: url("homepage_assets/background/background.jpg") repeat-x center/cover;
+    animation: moveBg 20s linear infinite;
+    z-index: -2;
+    filter: brightness(0.6);
+}
+
+/* ===== Glass Blur Overlay ===== */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(6px);
+    z-index: -1;
+}
+
+@keyframes moveBg {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -2000px 0;
+    }
+}
+
+/* ===== Content Layout ===== */
+.content {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #3cb371; /* Minecraft grass green */
+    text-shadow: 2px 2px 4px #000;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 1rem;
+    filter: drop-shadow(0 0 10px rgba(60, 179, 113, 0.7));
+}
+
+p {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    text-shadow: 1px 1px 3px #000;
+}
+
+/* ===== Members List ===== */
+.members {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.members li {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 1rem;
+    width: 150px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+}
+
+.members li:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(60, 179, 113, 0.8), 0 0 40px rgba(60, 179, 113, 0.4);
+}
+
+.members a {
+    text-decoration: none;
+    color: #aaffaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.members img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    border: 2px solid #3cb371;
+    transition: box-shadow 0.3s ease;
+}
+
+.members li:hover img {
+    box-shadow: 0 0 15px rgba(60, 179, 113, 0.8), 0 0 30px rgba(60, 179, 113, 0.4);
+}
+/* ===== Quotes Section ===== */
+.quotes {
+    margin-top: 3rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: fit-content;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 15px rgba(60, 179, 113, 0.3);
+}
+
+.quotes p {
+    font-family: "Minecraftia", sans-serif;
+    font-size: 1rem;
+    color: #e0ffe0;
+    text-shadow: 1px 1px 3px #000;
+    margin: 0.4rem 0;
+    transition: color 0.3s ease;
+}
+
+.quotes p strong {
+    color: #3cb371;
+}
+
+.quotes p:hover {
+    color: #aaffaa;
+}
