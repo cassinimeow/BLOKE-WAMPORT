@@ -631,3 +631,84 @@ canvas {
     box-shadow: 0 0 10px var(--accent-color);
     transform: scale(1.05);
 }
+/* =============== RESPONSIVE FIXES =============== */
+@media (max-width: 900px) {
+    .profile {
+        flex-direction: column;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .profile-pic {
+        width: 180px;
+        height: 180px;
+    }
+
+    .profile .mc-title {
+        font-size: 3rem;
+        margin-left: 0;
+    }
+
+    .cassini-section h2 {
+        font-size: 3rem;
+        justify-content: center;
+    }
+    .cassini-list {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .favorite-websites .cassini-list {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .favorite-websites .cassini-item {
+        width: 150px;
+        height: 150px;
+    }
+
+    .favorite-websites .cassini-item img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .favorite-websites .mc-button {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cassini-footer {
+        text-align: center;
+        padding: 1.5rem 1rem;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .social-link {
+        justify-content: center;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .favorite-websites .cassini-item {
+        width: 130px;
+        height: 130px;
+    }
+
+    .favorite-websites .mc-button {
+        font-size: 0.7rem;
+    }
+
+    .cassini-footer .mc-subtitle {
+        font-size: 1rem;
+    }
+}
