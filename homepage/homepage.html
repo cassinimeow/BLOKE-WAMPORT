@@ -164,18 +164,5 @@
                 </a>
             </div>
         </main>
-
-        <audio id="click-sound" src="cassini/cassini_assets/sounds/click.ogg" preload="auto"></audio>
-
-        <script>
-            function playClick() {
-                const s = document.getElementById("click-sound");
-                s.currentTime = 0;
-                s.play().catch(() => {});
-            }
-            document.querySelectorAll(".member-card").forEach(card => {
-                card.addEventListener("mouseenter", playClick);
-            });
-        </script>
     </body>
 </html>
