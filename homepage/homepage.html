@@ -7,22 +7,6 @@
         <link rel="icon" type="image/png" href="homepage_assets/images/logo.png" />
         <link rel="stylesheet" href="homepage.css" />
     </head>
-    <script>
-        // 🎵 Sound effect for link clicks
-        function playClickSound() {
-            const clickSound = document.getElementById("click-sound");
-            clickSound.currentTime = 0; // rewind to start for rapid clicks
-            clickSound.play();
-        }
-
-        // Attach sound to all member links
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll(".members a").forEach(link => {
-                link.addEventListener("click", playClickSound);
-            });
-        });
-    </script>
-
     <body>
         <div class="background"></div>
 
@@ -31,57 +15,167 @@
             <img src="homepage_assets/images/logo.png" alt="Group Logo" class="logo" />
             <p>
                 We are BLOKE WAMPORT — a creative group of students who love games, coding, and crafting ideas into
-                reality. Explore our hobbies, goals, and favorite websites below!
+                reality. Click a member to explore their full page!
             </p>
 
-            <ul class="members">
-                <li>
-                    <a href="../rymette/rymette.html">
-                        <img src="../rymette/images/rymette.jpg" alt="Rymette" />
-                    </a>
-                    <h3>Hi, I'm Rymette!</h3>
+            <div class="members-grid">
+                <!-- ROW 1 -->
+                <a href="../rymette/rymette.html" class="member-card">
+                    <img src="../rymette/images/rymette.jpg" alt="Rymette" />
+                    <h3>Rymette</h3>
                     <p class="quote">“T*ngin* lalaaa!”</p>
-                </li>
-                <li>
-                    <a href="../jmcastelo/castelo.html">
-                        <img src="../jmcastelo/jm_assets/images/jm.jpg" alt="JM" />
-                    </a>
-                    <h3>Hi, I'm John Mark!</h3>
-                    <p class="quote">“Salamat na lang sa lahat.”</p>
-                </li>
-                <li>
-                    <a href="../jr/jr.html">
-                        <img src="../jr/jr_assets/images/jr.jpg" alt="JR" />
-                    </a>
-                    <h3>Hi, I'm Jhon Rey!</h3>
-                    <p class="quote">“Don't let the "bad guy" get a kill that they didn't earn.”</p>
-                </li>
-                <li>
-                    <a href="../dinaya/Dinaya.html">
-                        <img src="../dinaya/images/Icon.jpg" alt="Johann" />
-                    </a>
-                    <h3>Hi, I'm Johann!</h3>
-                    <p class="quote">“The hardest choices require the strongest wills.”</p>
-                </li>
-                <li>
-                    <a href="../russel/russel.html">
-                        <img src="../russel/russel_assets/images/russel.jpg" alt="Russel" />
-                    </a>
-                    <h3>Hi, I'm Russel!</h3>
-                    <p class="quote">“Every win's for my momma. Always.”</p>
-                </li>
+                    <div class="info">
+                        <h2>Hobbies</h2>
+                        <ul>
+                            <li>Skating</li>
+                            <li>Working out</li>
+                            <li>Playing offline games</li>
+                        </ul>
+                        <h2>Goal</h2>
+                        <ul>
+                            <li>Provide better life for family</li>
+                        </ul>
+                        <h2>Fav Sites</h2>
+                        <ul>
+                            <li>123apps</li>
+                            <li>Animepahe</li>
+                            <li>YouTube</li>
+                        </ul>
+                    </div>
+                </a>
 
-                <li>
-                    <a href="../cassini/cassini.html">
-                        <img src="../cassini/cassini_assets/images/me.jpg" alt="Elizander" />
-                    </a>
-                    <h3>Hi, I'm Elizander!</h3>
+                <a href="../jmcastelo/castelo.html" class="member-card">
+                    <img src="../jmcastelo/jm_assets/images/jm.jpg" alt="John Mark" />
+                    <h3>John Mark</h3>
+                    <p class="quote">“Salamat na lang sa lahat.”</p>
+                    <div class="info">
+                        <h2>Hobbies</h2>
+                        <ul>
+                            <li>Chess</li>
+                            <li>Movies</li>
+                            <li>Music</li>
+                        </ul>
+                        <h2>Goals</h2>
+                        <ul>
+                            <li>Web dev business</li>
+                        </ul>
+                        <h2>Fav Site</h2>
+                        <ul>
+                            <li>Stats.fm</li>
+                        </ul>
+                    </div>
+                </a>
+
+                <a href="../jr/jr.html" class="member-card">
+                    <img src="../jr/jr_assets/images/jr.jpg" alt="Jhon Rey" />
+                    <h3>Jhon Rey</h3>
+                    <p class="quote">“Don't let the "bad guy" get a kill that they didn't earn.”</p>
+                    <div class="info">
+                        <h2>Hobbies</h2>
+                        <ul>
+                            <li>Gaming</li>
+                            <li>Sleeping</li>
+                        </ul>
+                        <h2>Goals</h2>
+                        <ul>
+                            <li>Finish school</li>
+                            <li>Success</li>
+                        </ul>
+                        <h2>Fav Site</h2>
+                        <ul>
+                            <li>YouTube</li>
+                        </ul>
+                    </div>
+                </a>
+
+                <!-- ROW 2 -->
+                <a href="../dinaya/Dinaya.html" class="member-card">
+                    <img src="../dinaya/images/Icon.jpg" alt="Johann" />
+                    <h3>Johann</h3>
+                    <p class="quote">“The hardest choices require the strongest wills.”</p>
+                    <div class="info">
+                        <h2>Hobbies</h2>
+                        <ul>
+                            <li>Basketball</li>
+                            <li>Video Games</li>
+                        </ul>
+                        <h2>Goals</h2>
+                        <ul>
+                            <li>Office job</li>
+                            <li>Aquarium business</li>
+                        </ul>
+                        <h2>Fav Sites</h2>
+                        <ul>
+                            <li>YouTube</li>
+                            <li>9anime</li>
+                            <li>Dopebox</li>
+                        </ul>
+                    </div>
+                </a>
+
+                <a href="../russel/russel.html" class="member-card">
+                    <img src="../russel/russel_assets/images/russel.jpg" alt="Russel" />
+                    <h3>Russel</h3>
+                    <p class="quote">“Every win's for my momma.”</p>
+                    <div class="info">
+                        <h2>Hobbies</h2>
+                        <ul>
+                            <li>Gaming</li>
+                            <li>Music</li>
+                            <li>Photography</li>
+                        </ul>
+                        <h2>Goal</h2>
+                        <ul>
+                            <li>Give mom better life</li>
+                        </ul>
+                        <h2>Fav Sites</h2>
+                        <ul>
+                            <li>Facebook</li>
+                            <li>Instagram</li>
+                            <li>YouTube</li>
+                        </ul>
+                    </div>
+                </a>
+
+                <a href="../cassini/cassini.html" class="member-card">
+                    <img src="../cassini/cassini_assets/images/me.jpg" alt="Elizander" />
+                    <h3>Elizander</h3>
                     <p class="quote">“Normal lang yan sa abnormal.”</p>
-                </li>
-            </ul>
+                    <div class="info">
+                        <h2>Hobbies</h2>
+                        <ul>
+                            <li>Gaming</li>
+                            <li>Anime</li>
+                            <li>Tinkering</li>
+                        </ul>
+                        <h2>Goals</h2>
+                        <ul>
+                            <li>Networking</li>
+                            <li>Homelab</li>
+                            <li>Engineer</li>
+                        </ul>
+                        <h2>Fav Sites</h2>
+                        <ul>
+                            <li>GitHub</li>
+                            <li>ChatGPT</li>
+                            <li>YouTube</li>
+                        </ul>
+                    </div>
+                </a>
+            </div>
         </main>
 
-        <!-- 🎵 Load sounds -->
-        <audio id="click-sound" src="../cassini/cassini_assets/sounds/click.ogg" preload="auto"></audio>
+        <audio id="click-sound" src="cassini/cassini_assets/sounds/click.ogg" preload="auto"></audio>
+
+        <script>
+            function playClick() {
+                const s = document.getElementById("click-sound");
+                s.currentTime = 0;
+                s.play().catch(() => {});
+            }
+            document.querySelectorAll(".member-card").forEach(card => {
+                card.addEventListener("mouseenter", playClick);
+            });
+        </script>
     </body>
 </html>

@@ -3,28 +3,15 @@
     font-family: "Mojangles";
     src: url("homepage_assets/fonts/Mojangles.ttf") format("truetype");
 }
-
 @font-face {
     font-family: "Minecraftia";
     src: url("homepage_assets/fonts/Minecraftia.ttf") format("truetype");
 }
 
-/* ===== Base Text Styles ===== */
-h1 {
-    font-family: "Mojangles", sans-serif;
-    font-size: 3rem;
-    color: #3cb371; /* Minecraft grass green */
-    text-shadow: 0 0 6px #3cb371, 0 0 12px #2e8b57, 0 0 18px #2e8b57, 0 0 24px #1e5631;
-    margin-bottom: 1rem;
+/* ===== Base ===== */
+* {
+    box-sizing: border-box;
 }
-
-p,
-li,
-a {
-    font-family: "Minecraftia", sans-serif;
-}
-
-/* ===== Background Animation ===== */
 body,
 html {
     margin: 0;
@@ -34,17 +21,28 @@ html {
     color: #fff;
     overflow-x: hidden;
 }
+h1 {
+    font-family: "Mojangles", sans-serif;
+    margin-top: 0%;
+    font-size: 4rem;
+    color: #3cb371;
+    margin-bottom: 1rem;
+}
+p,
+li,
+a {
+    font-family: "Minecraftia", sans-serif;
+}
 
+/* ===== Background ===== */
 .background {
     position: fixed;
     inset: 0;
-    background: url("homepage_assets/background/background.jpg") repeat-x center/cover;
-    animation: moveBg 20s linear infinite;
     z-index: -2;
     filter: brightness(0.6);
+    background: url("homepage_assets/background/background.jpg") repeat-x center/cover;
+    animation: moveBg 20s linear infinite;
 }
-
-/* ===== Glass Blur Overlay ===== */
 body::before {
     content: "";
     position: fixed;
@@ -53,7 +51,6 @@ body::before {
     backdrop-filter: blur(6px);
     z-index: -1;
 }
-
 @keyframes moveBg {
     from {
         background-position: 0 0;
@@ -63,19 +60,11 @@ body::before {
     }
 }
 
-/* ===== Content Layout ===== */
+/* ===== Layout ===== */
 .content {
     text-align: center;
     padding: 4rem 2rem;
 }
-
-h1 {
-    font-size: 3rem;
-    color: #3cb371; /* Minecraft grass green */
-    text-shadow: 2px 2px 4px #000;
-    margin-bottom: 1rem;
-}
-
 .logo {
     width: 150px;
     height: 150px;
@@ -84,152 +73,124 @@ h1 {
     margin: 0 auto 1rem;
     filter: drop-shadow(0 0 10px rgba(60, 179, 113, 0.7));
 }
-
-p {
+.content > p {
     max-width: 700px;
     margin: 0 auto 2rem;
     font-size: 1.1rem;
     color: #e0e0e0;
+    justify-content: center;
+    text-align: center;
     text-shadow: 1px 1px 3px #000;
 }
 
-/* ===== Members List ===== */
-.members {
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
+/* ===== Grid: 3 per row, responsive ===== */
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+@media (max-width: 992px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
-.members li {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    padding: 1rem;
-    width: 150px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(5px);
-    cursor: pointer;
-}
-
-.members li:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(60, 179, 113, 0.8), 0 0 40px rgba(60, 179, 113, 0.4);
-}
-
-.members a {
-    text-decoration: none;
-    color: #aaffaa;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.members img {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    object-fit: cover;
-    margin-bottom: 0.5rem;
-    border: 2px solid #3cb371;
-    transition: box-shadow 0.3s ease;
-}
-
-.members li:hover img {
-    box-shadow: 0 0 15px rgba(60, 179, 113, 0.8), 0 0 30px rgba(60, 179, 113, 0.4);
-}
-/* ===== Quotes Section ===== */
-.quotes {
-    margin-top: 3rem;
-    text-align: center;
+/* ===== Member Card ===== */
+.member-card {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px;
-    padding: 1.5rem;
-    width: fit-content;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 0 15px rgba(60, 179, 113, 0.3);
-}
-
-.quotes p {
-    font-family: "Minecraftia", sans-serif;
-    font-size: 1rem;
-    color: #e0ffe0;
-    text-shadow: 1px 1px 3px #000;
-    margin: 0.4rem 0;
-    transition: color 0.3s ease;
-}
-
-.quotes p strong {
-    color: #3cb371;
-}
-
-.quotes p:hover {
-    color: #aaffaa;
-}
-.members {
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-.members li {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
     padding: 1rem;
-    width: 150px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(5px);
-    cursor: pointer;
     text-align: center;
-}
-
-.members li:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(60, 179, 113, 0.8), 0 0 40px rgba(60, 179, 113, 0.4);
-}
-
-.members a {
     text-decoration: none;
-    color: #aaffaa;
+    color: inherit;
+    transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(6px);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-.members img {
-    width: 100px;
-    height: 100px;
+.member-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(60, 179, 113, 0.9), 0 0 50px rgba(60, 179, 113, 0.5);
+}
+.member-card img {
+    width: 120px;
+    height: 120px;
     border-radius: 10px;
     object-fit: cover;
     margin-bottom: 0.5rem;
     border: 2px solid #3cb371;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s;
+}
+.member-card:hover img {
+    box-shadow: 0 0 15px rgba(60, 179, 113, 0.8);
 }
 
-.members li:hover img {
-    box-shadow: 0 0 15px rgba(60, 179, 113, 0.8), 0 0 30px rgba(60, 179, 113, 0.4);
+.member-card h3 {
+    margin: 0.4rem 0 0.2rem;
+    color: #aaffaa;
+    font-size: 1.1rem;
 }
-
-/* ✨ Quotes under each member (yearbook style) */
-.members .quote {
-    font-size: 0.85rem;
+.member-card .quote {
+    font-size: 0.8rem;
     color: #ccffcc;
-    margin-top: 0.5rem;
+    margin: 0.4rem 0;
     background: rgba(255, 255, 255, 0.05);
-    padding: 0.4rem;
+    padding: 0.3rem 0.6rem;
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     text-shadow: 1px 1px 1px #003300;
+
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 2.4em;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 1.3;
+    overflow: hidden;
+}
+
+/* ===== Info Panel ===== */
+.info {
+    margin-top: 0.8rem;
+    text-align: left;
+    font-size: 0.85rem;
+    width: 100%;
+}
+.info h2 {
+    margin: 0.5rem 0 0.3rem;
+    color: #3cb371;
+    font-size: 0.95rem;
+    justify-content: center;
+    text-align: center;
+}
+.info ul {
+    margin: 0 0 0.5rem;
+    justify-content: center;
+    text-align: center;
+    list-style: none;
+    padding-left: 0rem;
+}
+.info ul li {
+    margin-bottom: 0.15rem;
+}
+.info a {
+    color: #aaffaa;
+}
+.info a:hover {
+    text-decoration: underline;
 }
