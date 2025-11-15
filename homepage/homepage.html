@@ -4,84 +4,470 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>BLOKE WAMPORT</title>
-        <link rel="icon" type="image/png" href="homepage_assets/images/logo.png" />
+        <link rel="icon" type="image/png" href="homepage_assets/images/icon.png" />
         <link rel="stylesheet" href="homepage.css" />
     </head>
-    <script>
-        // 🎵 Sound effect for link clicks
-        function playClickSound() {
-            const clickSound = document.getElementById("click-sound");
-            clickSound.currentTime = 0; // rewind to start for rapid clicks
-            clickSound.play();
-        }
-
-        // Attach sound to all member links
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll(".members a").forEach(link => {
-                link.addEventListener("click", playClickSound);
-            });
-        });
-    </script>
-
     <body>
         <div class="background"></div>
 
+        <!-- PLAY SCREEN -->
+        <div id="play-screen">
+            <div class="play-content">
+                <img src="homepage_assets/images/group_logo.png" alt="Logo" class="play-logo" />
+                <button id="play-btn">
+                    <span class="btn-text">PLAY</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- CARDS (slide in from bottom) -->
+        <div id="cards-container" class="hidden">
+            <main class="content">
+                <ul class="members">
+                    <!-- ALL YOUR 6 <li> CARDS HERE -->
+                </ul>
+            </main>
+        </div>
+
         <main class="content">
-            <h1>BLOKE WAMPORT</h1>
-            <img src="homepage_assets/images/logo.png" alt="Group Logo" class="logo" />
+            <img src="homepage_assets/images/group_logo.png" alt="Group Logo" class="logo" />
             <p>
                 We are BLOKE WAMPORT — a creative group of students who love games, coding, and crafting ideas into
-                reality. Explore our hobbies, goals, and favorite websites below!
+                reality. Hover a card → flip → use arrows to explore!
             </p>
 
             <ul class="members">
+                <!-- ==================== Rymette ==================== -->
                 <li>
-                    <a href="../rymette/rymette.html">
-                        <img src="../rymette/images/rymette.jpg" alt="Rymette" />
-                    </a>
-                    <h3>Hi, I'm Rymette!</h3>
-                    <p class="quote">“T*ngin* lalaaa!”</p>
-                </li>
-                <li>
-                    <a href="../jmcastelo/castelo.html">
-                        <img src="../jmcastelo/jm_assets/images/jm.jpg" alt="JM" />
-                    </a>
-                    <h3>Hi, I'm John Mark!</h3>
-                    <p class="quote">“Salamat na lang sa lahat.”</p>
-                </li>
-                <li>
-                    <a href="../jr/jr.html">
-                        <img src="../jr/jr_assets/images/jr.jpg" alt="JR" />
-                    </a>
-                    <h3>Hi, I'm Jhon Rey!</h3>
-                    <p class="quote">“Don't let the "bad guy" get a kill that they didn't earn.”</p>
-                </li>
-                <li>
-                    <a href="../dinaya/Dinaya.html">
-                        <img src="../dinaya/images/Icon.jpg" alt="Johann" />
-                    </a>
-                    <h3>Hi, I'm Johann!</h3>
-                    <p class="quote">“The hardest choices require the strongest wills.”</p>
-                </li>
-                <li>
-                    <a href="../russel/russel.html">
-                        <img src="../russel/russel_assets/images/russel.jpg" alt="Russel" />
-                    </a>
-                    <h3>Hi, I'm Russel!</h3>
-                    <p class="quote">“Every win's for my momma. Always.”</p>
+                    <div class="flip-container">
+                        <div class="front">
+                            <img src="../rymette/images/rymette.jpg" alt="Rymette" />
+                            <h3>Hi, I'm Rymette!</h3>
+                            <p class="quote">"T*ngin* lalaaa!"</p>
+                        </div>
+
+                        <div class="back">
+                            <div class="back-content">
+                                <div class="image-container">
+                                    <img src="../rymette/images/hobbies.jpg" class="back-image active" data-index="0" />
+                                    <img src="../rymette/images/goals.jpg" class="back-image" data-index="1" />
+                                    <img src="../rymette/images/favorites.jpg" class="back-image" data-index="2" />
+                                </div>
+
+                                <div class="fade-gradient"></div>
+
+                                <div class="back-text">
+                                    <div class="carousel">
+                                        <button class="arrow left">&lt;</button>
+                                        <div class="slide-container">
+                                            <div class="slide active" data-index="0">
+                                                <h2>Hobbies</h2>
+                                                <p>Gaming, digital art, music.</p>
+                                            </div>
+                                            <div class="slide" data-index="1">
+                                                <h2>Goals</h2>
+                                                <p>Finish a full indie game.</p>
+                                            </div>
+                                            <div class="slide" data-index="2">
+                                                <h2>Favorite Websites</h2>
+                                                <p>itch.io, DeviantArt, Spotify</p>
+                                            </div>
+                                        </div>
+                                        <button class="arrow right">&gt;</button>
+                                    </div>
+                                    <div class="dots">
+                                        <span class="dot active" data-index="0">•</span>
+                                        <span class="dot" data-index="1">•</span>
+                                        <span class="dot" data-index="2">•</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
 
+                <!-- ==================== John Mark ==================== -->
                 <li>
-                    <a href="../cassini/cassini.html">
-                        <img src="../cassini/cassini_assets/images/me.jpg" alt="Elizander" />
-                    </a>
-                    <h3>Hi, I'm Elizander!</h3>
-                    <p class="quote">“Normal lang yan sa abnormal.”</p>
+                    <div class="flip-container">
+                        <div class="front">
+                            <img src="../jmcastelo/jm_assets/images/jm.jpg" alt="JM" />
+                            <h3>Hi, I'm John Mark!</h3>
+                            <p class="quote">"Salamat na lang sa lahat."</p>
+                        </div>
+
+                        <div class="back">
+                            <div class="back-content">
+                                <div class="image-container">
+                                    <img
+                                        src="../jmcastelo/jm_assets/images/hobbies.jpg"
+                                        class="back-image active"
+                                        data-index="0"
+                                    />
+                                    <img
+                                        src="../jmcastelo/jm_assets/images/goals.jpg"
+                                        class="back-image"
+                                        data-index="1"
+                                    />
+                                    <img
+                                        src="../jmcastelo/jm_assets/images/favorites.jpg"
+                                        class="back-image"
+                                        data-index="2"
+                                    />
+                                </div>
+
+                                <div class="fade-gradient"></div>
+
+                                <div class="back-text">
+                                    <div class="carousel">
+                                        <button class="arrow left">&lt;</button>
+                                        <div class="slide-container">
+                                            <div class="slide active" data-index="0">
+                                                <h2>Hobbies</h2>
+                                                <p>Reading, coding, basketball.</p>
+                                            </div>
+                                            <div class="slide" data-index="1">
+                                                <h2>Goals</h2>
+                                                <p>Graduate with honors, launch a startup.</p>
+                                            </div>
+                                            <div class="slide" data-index="2">
+                                                <h2>Favorite Websites</h2>
+                                                <p>Stack Overflow, Medium, NBA.com</p>
+                                            </div>
+                                        </div>
+                                        <button class="arrow right">&gt;</button>
+                                    </div>
+                                    <div class="dots">
+                                        <span class="dot active" data-index="0">•</span>
+                                        <span class="dot" data-index="1">•</span>
+                                        <span class="dot" data-index="2">•</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- ==================== Jhon Rey ==================== -->
+                <li>
+                    <div class="flip-container">
+                        <div class="front">
+                            <img src="../jr/jr_assets/images/jr.jpg" alt="JR" />
+                            <h3>Hi, I'm Jhon Rey!</h3>
+                            <p class="quote">"Don't let the "bad guy" get a kill that they didn't earn."</p>
+                        </div>
+
+                        <div class="back">
+                            <div class="back-content">
+                                <div class="image-container">
+                                    <img
+                                        src="../jr/jr_assets/images/hobbies.jpg"
+                                        class="back-image active"
+                                        data-index="0"
+                                    />
+                                    <img src="../jr/jr_assets/images/goals.jpg" class="back-image" data-index="1" />
+                                    <img src="../jr/jr_assets/images/favorites.jpg" class="back-image" data-index="2" />
+                                </div>
+
+                                <div class="fade-gradient"></div>
+
+                                <div class="back-text">
+                                    <div class="carousel">
+                                        <button class="arrow left">&lt;</button>
+                                        <div class="slide-container">
+                                            <div class="slide active" data-index="0">
+                                                <h2>Hobbies</h2>
+                                                <p>Competitive FPS, strategy games.</p>
+                                            </div>
+                                            <div class="slide" data-index="1">
+                                                <h2>Goals</h2>
+                                                <p>Win a national esports tournament.</p>
+                                            </div>
+                                            <div class="slide" data-index="2">
+                                                <h2>Favorite Websites</h2>
+                                                <p>Twitch, HLTV, Discord</p>
+                                            </div>
+                                        </div>
+                                        <button class="arrow right">&gt;</button>
+                                    </div>
+                                    <div class="dots">
+                                        <span class="dot active" data-index="0">•</span>
+                                        <span class="dot" data-index="1">•</span>
+                                        <span class="dot" data-index="2">•</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- ==================== Johann ==================== -->
+                <li>
+                    <div class="flip-container">
+                        <div class="front">
+                            <img src="../dinaya/images/Icon.jpg" alt="Johann" />
+                            <h3>Hi, I'm Johann!</h3>
+                            <p class="quote">"The hardest choices require the strongest wills."</p>
+                        </div>
+
+                        <div class="back">
+                            <div class="back-content">
+                                <div class="image-container">
+                                    <img src="../dinaya/images/hobbies.jpg" class="back-image active" data-index="0" />
+                                    <img src="../dinaya/images/goals.jpg" class="back-image" data-index="1" />
+                                    <img src="../dinaya/images/favorites.jpg" class="back-image" data-index="2" />
+                                </div>
+
+                                <div class="fade-gradient"></div>
+
+                                <div class="back-text">
+                                    <div class="carousel">
+                                        <button class="arrow left">&lt;</button>
+                                        <div class="slide-container">
+                                            <div class="slide active" data-index="0">
+                                                <h2>Hobbies</h2>
+                                                <p>Philosophy, movies, AI projects.</p>
+                                            </div>
+                                            <div class="slide" data-index="1">
+                                                <h2>Goals</h2>
+                                                <p>Publish a research paper.</p>
+                                            </div>
+                                            <div class="slide" data-index="2">
+                                                <h2>Favorite Websites</h2>
+                                                <p>arXiv, IMDb, Coursera</p>
+                                            </div>
+                                        </div>
+                                        <button class="arrow right">&gt;</button>
+                                    </div>
+                                    <div class="dots">
+                                        <span class="dot active" data-index="0">•</span>
+                                        <span class="dot" data-index="1">•</span>
+                                        <span class="dot" data-index="2">•</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- ==================== Russel ==================== -->
+                <li>
+                    <div class="flip-container">
+                        <div class="front">
+                            <img src="../russel/russel_assets/images/russel.jpg" alt="Russel" />
+                            <h3>Hi, I'm Russel!</h3>
+                            <p class="quote">"Every win's for my momma. Always."</p>
+                        </div>
+
+                        <div class="back">
+                            <div class="back-content">
+                                <div class="image-container">
+                                    <img
+                                        src="../russel/russel_assets/images/hobbies.jpg"
+                                        class="back-image active"
+                                        data-index="0"
+                                    />
+                                    <img
+                                        src="../russel/russel_assets/images/goals.jpg"
+                                        class="back-image"
+                                        data-index="1"
+                                    />
+                                    <img
+                                        src="../russel/russel_assets/images/favorites.jpg"
+                                        class="back-image"
+                                        data-index="2"
+                                    />
+                                </div>
+
+                                <div class="fade-gradient"></div>
+
+                                <div class="back-text">
+                                    <div class="carousel">
+                                        <button class="arrow left">&lt;</button>
+                                        <div class="slide-container">
+                                            <div class="slide active" data-index="0">
+                                                <h2>Hobbies</h2>
+                                                <p>Basketball, family time, gaming.</p>
+                                            </div>
+                                            <div class="slide" data-index="1">
+                                                <h2>Goals</h2>
+                                                <p>Play varsity, become a coach.</p>
+                                            </div>
+                                            <div class="slide" data-index="2">
+                                                <h2>Favorite Websites</h2>
+                                                <p>NBA.com, YouTube, Instagram</p>
+                                            </div>
+                                        </div>
+                                        <button class="arrow right">&gt;</button>
+                                    </div>
+                                    <div class="dots">
+                                        <span class="dot active" data-index="0">•</span>
+                                        <span class="dot" data-index="1">•</span>
+                                        <span class="dot" data-index="2">•</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- ==================== Elizander ==================== -->
+                <li>
+                    <div class="flip-container">
+                        <div class="front">
+                            <img src="../cassini/cassini_assets/images/me.jpg" alt="Elizander" />
+                            <h3>Hi, I'm Elizander!</h3>
+                            <p class="quote">"Normal lang yan sa abnormal."</p>
+                        </div>
+
+                        <div class="back">
+                            <div class="back-content">
+                                <div class="image-container">
+                                    <img
+                                        src="homepage_assets/images/eli_hobbies.png"
+                                        class="back-image active"
+                                        data-index="0"
+                                    />
+                                    <img src="homepage_assets/images/eli_goals.png" class="back-image" data-index="1" />
+                                    <img
+                                        src="homepage_assets/images/eli_favorites.png"
+                                        class="back-image"
+                                        data-index="2"
+                                    />
+                                </div>
+
+                                <div class="fade-gradient"></div>
+
+                                <div class="back-text">
+                                    <div class="carousel">
+                                        <button class="arrow left">&lt;</button>
+                                        <div class="slide-container">
+                                            <div class="slide active" data-index="0">
+                                                <h2>Hobbies</h2>
+                                                <p>Games and Watching Movies or Anime.</p>
+                                            </div>
+                                            <div class="slide" data-index="1">
+                                                <h2>Goals</h2>
+                                                <p>Learn Networking Concepts and be a Network Engineer.</p>
+                                            </div>
+                                            <div class="slide" data-index="2">
+                                                <h2>Favorite Websites</h2>
+                                                <p>ChatGPT, GitHub, YouTube</p>
+                                            </div>
+                                        </div>
+                                        <button class="arrow right">&gt;</button>
+                                    </div>
+                                    <div class="dots">
+                                        <span class="dot active" data-index="0">•</span>
+                                        <span class="dot" data-index="1">•</span>
+                                        <span class="dot" data-index="2">•</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </main>
 
-        <!-- 🎵 Load sounds -->
         <audio id="click-sound" src="../cassini/cassini_assets/sounds/click.ogg" preload="auto"></audio>
+
+        <!-- Fixed JavaScript – All Images Work -->
+        <script>
+            function playClick() {
+                const snd = document.getElementById("click-sound");
+                snd.currentTime = 0;
+                snd.play();
+            }
+
+            // === CAROUSEL (your existing code) ===
+            document.addEventListener("DOMContentLoaded", () => {
+                // Carousel
+                document.querySelectorAll(".arrow, .dot").forEach(el => {
+                    el.addEventListener("click", e => {
+                        playClick();
+                        const back = e.target.closest(".back");
+                        if (!back) return;
+
+                        const slides = back.querySelectorAll(".slide");
+                        const images = back.querySelectorAll(".back-image");
+                        const dots = back.querySelectorAll(".dot");
+
+                        let current = parseInt(back.querySelector(".slide.active").dataset.index);
+                        let next = e.target.classList.contains("arrow")
+                            ? (current + (e.target.classList.contains("left") ? -1 : 1) + slides.length) % slides.length
+                            : parseInt(e.target.dataset.index);
+
+                        slides.forEach(s => s.classList.remove("active"));
+                        images.forEach(i => i.classList.remove("active"));
+                        dots.forEach(d => d.classList.remove("active"));
+
+                        slides[next].classList.add("active");
+                        images[next].classList.add("active");
+                        dots[next].classList.add("active");
+                    });
+                });
+
+                // PLAY BUTTON – Slide in cards
+                const playScreen = document.getElementById("play-screen");
+                const playBtn = document.getElementById("play-btn");
+                const cardsContainer = document.getElementById("cards-container");
+
+                playBtn.addEventListener("click", () => {
+                    playClick();
+
+                    playScreen.classList.add("fade-out");
+
+                    setTimeout(() => {
+                        playScreen.style.display = "none";
+                        cardsContainer.classList.remove("hidden");
+                        setTimeout(() => cardsContainer.classList.add("show"), 50);
+                    }, 600);
+                });
+
+                // === MODAL ===
+                const modal = document.getElementById("image-modal");
+                const modalImg = document.getElementById("modal-image");
+                const captionText = document.getElementById("modal-caption");
+                const closeBtn = document.querySelector(".modal-close");
+
+                if (modal && modalImg && closeBtn) {
+                    // Open modal on image click
+                    document.querySelectorAll(".back-image").forEach(img => {
+                        img.style.cursor = "zoom-in";
+                        img.addEventListener("click", function (e) {
+                            e.stopPropagation(); // Prevent flip issues
+                            playClick();
+                            modal.classList.add("active");
+                            modalImg.src = this.src;
+                            modalImg.alt = this.alt;
+                        });
+                    });
+
+                    // Close modal
+                    function closeModal() {
+                        modal.classList.remove("active");
+                    }
+                    closeBtn.addEventListener("click", closeModal);
+
+                    // Close on outside click
+                    modal.addEventListener("click", function (e) {
+                        if (e.target === modal) closeModal();
+                    });
+
+                    // Close on ESC
+                    document.addEventListener("keydown", function (e) {
+                        if (e.key === "Escape" && modal.classList.contains("active")) {
+                            closeModal();
+                        }
+                    });
+                }
+            });
+        </script>
+        <!-- Image Modal -->
+        <div id="image-modal" class="modal">
+            <span class="modal-close">&times;</span>
+            <img class="modal-content" id="modal-image" src="" alt="" />
+            <div id="modal-caption"></div>
+        </div>
     </body>
 </html>
