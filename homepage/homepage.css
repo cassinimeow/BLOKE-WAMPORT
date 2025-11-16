@@ -1,3 +1,7 @@
+/* Random splash – JS will pick one */
+.splash-text {
+    content: attr(data-splash);
+}
 /* ===== Fonts ===== */
 @font-face {
     font-family: "Mojangles";
@@ -105,16 +109,14 @@ h1 {
     transform: scale(1.08); /* Only expansion – no glow */
 }
 
-/* Flip */
+/* ===== CLICK-TO-FLIP SYSTEM ===== */
 .flip-container {
     position: relative;
     width: 100%;
     height: 100%;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
-}
-.members li:hover .flip-container {
-    transform: rotateY(180deg);
+    cursor: default;
 }
 
 .front,
@@ -131,23 +133,40 @@ h1 {
     background: url("homepage_assets/background/card_bg.png") repeat;
     background-size: 40px 40px;
 }
+
 .front {
     z-index: 2;
     transform: rotateY(0deg);
 }
+
 .back {
     z-index: 1;
     transform: rotateY(180deg);
     opacity: 0;
     pointer-events: none;
 }
-.members li:hover .back {
+
+/* FLIP ON CLICK (JS adds .flipped) */
+.members li.flipped .flip-container {
+    transform: rotateY(180deg);
+}
+.members li.flipped .front {
+    opacity: 0;
+    pointer-events: none;
+}
+.members li.flipped .back {
     opacity: 1;
     pointer-events: auto;
 }
-.members li:hover .front {
-    opacity: 0;
-    pointer-events: none;
+
+/* PHOTO CLICKABLE */
+.member-photo {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    border-radius: 10px;
+}
+.member-photo:hover {
+    transform: scale(1.05);
 }
 
 /* Frame */
@@ -252,9 +271,11 @@ h1 {
     margin-bottom: 0.8rem;
 }
 .arrow {
-    background: #3cb371;
+    background: url("homepage_assets/background/button_bg.png");
     color: #000;
     border: none;
+    background-size: 100% 100%;
+    width: 44px;
     font-size: 1rem;
     padding: 0.3rem 0.7rem;
     cursor: pointer;
@@ -374,20 +395,48 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
+    max-width: 90%;
+}
+.logo-container {
+    position: relative;
+    display: inline-block;
 }
 .play-logo {
     width: 800px;
-    object-fit: contain;
     height: 189px;
-    filter: drop-shadow(0 0 15px #3cb371);
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px #3cb371);
+}
+.splash-text {
+    position: absolute;
+    top: 70%; /* ← Move up */
+    right: -40%; /* ← Push to the right */
+    left: 95%; /* ← Disable centering */
+    transform: rotate(-15deg); /* ← Keep tilt */
+    color: #ffff55;
+    font-family: "Mojangles", sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 0 #000;
+    white-space: nowrap;
+    pointer-events: none;
+    animation: float 3s ease-in-out infinite;
+}
+.group-desc {
+    color: #ddd;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 700px;
+    margin-top: 0;
+    text-shadow: 1px 1px 2px #000;
 }
 
-/* MINECRAFT BUTTON */
+/* MINECRAFT BUTTON (22×22 texture) */
 #play-btn {
     background: url("homepage_assets/background/button_bg.png") center/contain no-repeat;
     background-size: 100% 100%;
-    width: 98px; /* 22×22 → 88px (4x scale for crispness) */
+    width: 208px; /* 22×22 → 88px (4× scale) */
     height: 88px;
     border: none;
     cursor: pointer;
@@ -399,13 +448,13 @@ h1 {
     transform: scale(1.08);
 }
 #play-btn:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
 }
 .btn-text {
     position: absolute;
     top: 50%;
-    bottom: 10%;
     left: 50%;
+    bottom: 5%;
     transform: translate(-50%, -50%);
     color: #fff;
     font-family: "Mojangles", sans-serif;
@@ -414,22 +463,25 @@ h1 {
     pointer-events: none;
 }
 
-/* ===== CARDS SLIDE IN + NO TOP GAP ===== */
-#cards-container {
-    opacity: 0;
-    transform: translateY(120px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-#cards-container.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-.hidden {
+/* REMOVE LOGO / DESC FROM MAIN CONTENT */
+main.content .logo,
+main.content > p {
     display: none;
+} /* <-- they only exist on play screen */
+
+/* KEEP TIGHT PADDING */
+main.content {
+    padding: 3rem 2rem !important;
+    margin: 0 !important;
 }
 
-/* FIX TOP GAP – Reset main content padding */
-main.content {
-    padding: 2rem !important; /* Override any large padding */
-    margin-top: 0 !important;
+/* SPLASH FLOAT ANIMATION */
+@keyframes float {
+    0%,
+    100% {
+        transform: translate(-50%, -50%) rotate(-12deg) translateY(0);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(-12deg) translateY(-10px);
+    }
 }

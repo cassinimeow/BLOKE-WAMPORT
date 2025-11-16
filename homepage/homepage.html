@@ -13,18 +13,24 @@
         <!-- PLAY SCREEN -->
         <div id="play-screen">
             <div class="play-content">
-                <img src="homepage_assets/images/group_logo.png" alt="Logo" class="play-logo" />
-                <button id="play-btn">
-                    <span class="btn-text">PLAY</span>
-                </button>
+                <div class="logo-container">
+                    <img src="homepage_assets/images/group_logo.png" alt="Logo" class="play-logo" />
+                    <div class="splash-text" id="splash"></div>
+                </div>
+                <p class="group-desc">
+                    We are BLOKE WAMPORT — a creative group of students who love games, coding, and crafting ideas into
+                    reality.<br />
+                    Click a card → flip → use arrows to explore!
+                </p>
+                <button id="play-btn"><span class="btn-text">PLAY</span></button>
             </div>
         </div>
 
-        <!-- CARDS (slide in from bottom) -->
+        <!-- CARDS ONLY -->
         <div id="cards-container" class="hidden">
             <main class="content">
                 <ul class="members">
-                    <!-- ALL YOUR 6 <li> CARDS HERE -->
+                    <!-- ALL 6 <li> CARDS HERE -->
                 </ul>
             </main>
         </div>
@@ -41,7 +47,12 @@
                 <li>
                     <div class="flip-container">
                         <div class="front">
-                            <img src="../rymette/images/rymette.jpg" alt="Rymette" />
+                            <img
+                                src="homepage_assets/images/rymette_pfp.jpg"
+                                alt="Rymette"
+                                class="member-photo"
+                                data-flip
+                            />
                             <h3>Hi, I'm Rymette!</h3>
                             <p class="quote">"T*ngin* lalaaa!"</p>
                         </div>
@@ -90,7 +101,7 @@
                 <li>
                     <div class="flip-container">
                         <div class="front">
-                            <img src="../jmcastelo/jm_assets/images/jm.jpg" alt="JM" />
+                            <img src="homepage_assets/images/jm_pfp.jpg" alt="JM" class="member-photo" data-flip />
                             <h3>Hi, I'm John Mark!</h3>
                             <p class="quote">"Salamat na lang sa lahat."</p>
                         </div>
@@ -151,7 +162,7 @@
                 <li>
                     <div class="flip-container">
                         <div class="front">
-                            <img src="../jr/jr_assets/images/jr.jpg" alt="JR" />
+                            <img src="homepage_assets/images/jr_pfp.jpg" alt="JR" class="member-photo" data-flip />
                             <h3>Hi, I'm Jhon Rey!</h3>
                             <p class="quote">"Don't let the "bad guy" get a kill that they didn't earn."</p>
                         </div>
@@ -204,7 +215,12 @@
                 <li>
                     <div class="flip-container">
                         <div class="front">
-                            <img src="../dinaya/images/Icon.jpg" alt="Johann" />
+                            <img
+                                src="homepage_assets/images/dinaya_pfp.jpg"
+                                alt="Johann"
+                                class="member-photo"
+                                data-flip
+                            />
                             <h3>Hi, I'm Johann!</h3>
                             <p class="quote">"The hardest choices require the strongest wills."</p>
                         </div>
@@ -253,7 +269,12 @@
                 <li>
                     <div class="flip-container">
                         <div class="front">
-                            <img src="../russel/russel_assets/images/russel.jpg" alt="Russel" />
+                            <img
+                                src="homepage_assets/images/russel_pfp.jpg"
+                                alt="Russel"
+                                class="member-photo"
+                                data-flip
+                            />
                             <h3>Hi, I'm Russel!</h3>
                             <p class="quote">"Every win's for my momma. Always."</p>
                         </div>
@@ -314,7 +335,12 @@
                 <li>
                     <div class="flip-container">
                         <div class="front">
-                            <img src="../cassini/cassini_assets/images/me.jpg" alt="Elizander" />
+                            <img
+                                src="homepage_assets/images/eli_pfp.jpg"
+                                alt="Elizander"
+                                class="member-photo"
+                                data-flip
+                            />
                             <h3>Hi, I'm Elizander!</h3>
                             <p class="quote">"Normal lang yan sa abnormal."</p>
                         </div>
@@ -351,7 +377,7 @@
                                             </div>
                                             <div class="slide" data-index="2">
                                                 <h2>Favorite Websites</h2>
-                                                <p>ChatGPT, GitHub, YouTube</p>
+                                                <p>ChatGPT, GitHub, and YouTube.</p>
                                             </div>
                                         </div>
                                         <button class="arrow right">&gt;</button>
@@ -369,19 +395,96 @@
             </ul>
         </main>
 
-        <audio id="click-sound" src="../cassini/cassini_assets/sounds/click.ogg" preload="auto"></audio>
+        <audio id="click-sound" src="homepage_assets/sounds/click.ogg" preload="auto"></audio>
 
-        <!-- Fixed JavaScript – All Images Work -->
+        <!-- Image Modal -->
+        <div id="image-modal" class="modal">
+            <span class="modal-close">&times;</span>
+            <img class="modal-content" id="modal-image" src="" alt="" />
+            <div id="modal-caption"></div>
+        </div>
+
+        <!-- AUDIO -->
+        <audio id="bg-music" loop preload="auto">
+            <source src="homepage_assets/sounds/bg_sfx.mp3" type="audio/mpeg" />
+        </audio>
+        <audio id="flip-sound" preload="auto">
+            <source src="homepage_assets/sounds/flip_sfx.mp3" type="audio/mpeg" />
+        </audio>
+        <audio id="click-sound" src="homepage_assets/sounds/click.ogg" preload="auto"></audio>
+
+        <!-- SCRIPT (MUST BE AFTER AUDIO) -->
         <script>
+            // === AUDIO ELEMENTS ===
+            const bgMusic = document.getElementById("bg-music");
+            const flipSound = document.getElementById("flip-sound");
+            const clickSound = document.getElementById("click-sound");
+            let isMusicPlaying = false;
+
+            // === SOUND FUNCTIONS ===
             function playClick() {
-                const snd = document.getElementById("click-sound");
-                snd.currentTime = 0;
-                snd.play();
+                clickSound.currentTime = 0;
+                clickSound.play().catch(e => console.log("Click play error:", e));
             }
 
-            // === CAROUSEL (your existing code) ===
+            function playFlip() {
+                flipSound.currentTime = 0;
+                flipSound.play().catch(e => console.log("Flip play error:", e));
+            }
+
+            function startMusic() {
+                if (!isMusicPlaying) {
+                    bgMusic.volume = 0.5;
+                    bgMusic
+                        .play()
+                        .then(() => {
+                            isMusicPlaying = true;
+                            console.log("BGM started");
+                        })
+                        .catch(err => {
+                            console.log("BGM blocked:", err);
+                        });
+                }
+            }
+
+            // === AUTO-START BGM ON FIRST CLICK ===
+            document.addEventListener("click", startMusic, { once: true });
+
+            // === PAUSE BGM WHEN TAB IS HIDDEN ===
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    if (isMusicPlaying) {
+                        bgMusic.pause();
+                        console.log("BGM paused (tab hidden)");
+                    }
+                } else {
+                    if (isMusicPlaying) {
+                        bgMusic.play().catch(() => {});
+                        console.log("BGM resumed (tab active)");
+                    }
+                }
+            });
+
+            // === DOM READY ===
             document.addEventListener("DOMContentLoaded", () => {
-                // Carousel
+                console.log("DOM loaded");
+
+                // === PLAY BUTTON ===
+                const playBtn = document.getElementById("play-btn");
+                const playScreen = document.getElementById("play-screen");
+                const cardsContainer = document.getElementById("cards-container");
+
+                playBtn?.addEventListener("click", () => {
+                    playClick();
+                    playScreen.classList.add("fade-out");
+                    setTimeout(() => {
+                        playScreen.style.display = "none";
+                        cardsContainer.classList.remove("hidden");
+                        requestAnimationFrame(() => cardsContainer.classList.add("show"));
+                    }, 600);
+                });
+
+                // === CAROUSEL ===
                 document.querySelectorAll(".arrow, .dot").forEach(el => {
                     el.addEventListener("click", e => {
                         playClick();
@@ -407,67 +510,56 @@
                     });
                 });
 
-                // PLAY BUTTON – Slide in cards
-                const playScreen = document.getElementById("play-screen");
-                const playBtn = document.getElementById("play-btn");
-                const cardsContainer = document.getElementById("cards-container");
-
-                playBtn.addEventListener("click", () => {
-                    playClick();
-
-                    playScreen.classList.add("fade-out");
-
-                    setTimeout(() => {
-                        playScreen.style.display = "none";
-                        cardsContainer.classList.remove("hidden");
-                        setTimeout(() => cardsContainer.classList.add("show"), 50);
-                    }, 600);
-                });
-
                 // === MODAL ===
                 const modal = document.getElementById("image-modal");
                 const modalImg = document.getElementById("modal-image");
-                const captionText = document.getElementById("modal-caption");
                 const closeBtn = document.querySelector(".modal-close");
 
                 if (modal && modalImg && closeBtn) {
-                    // Open modal on image click
                     document.querySelectorAll(".back-image").forEach(img => {
                         img.style.cursor = "zoom-in";
-                        img.addEventListener("click", function (e) {
-                            e.stopPropagation(); // Prevent flip issues
+                        img.addEventListener("click", e => {
+                            e.stopPropagation();
                             playClick();
                             modal.classList.add("active");
-                            modalImg.src = this.src;
-                            modalImg.alt = this.alt;
+                            modalImg.src = img.src;
+                            modalImg.alt = img.alt;
                         });
                     });
 
-                    // Close modal
-                    function closeModal() {
-                        modal.classList.remove("active");
-                    }
-                    closeBtn.addEventListener("click", closeModal);
+                    const closeModal = () => modal.classList.remove("active");
+                    closeBtn.onclick = closeModal;
+                    modal.onclick = e => e.target === modal && closeModal();
+                    document.onkeydown = e => e.key === "Escape" && modal.classList.contains("active") && closeModal();
+                }
 
-                    // Close on outside click
-                    modal.addEventListener("click", function (e) {
-                        if (e.target === modal) closeModal();
+                // === SPLASH TEXT ===
+                const splashes = ["BLOKE WAMPORT!", "Crafting code!", "Hover to flip!", "Est. 2025", "Made in PH!"];
+                const splashEl = document.getElementById("splash");
+                if (splashEl) splashEl.textContent = splashes[Math.floor(Math.random() * splashes.length)];
+
+                // === CLICK PHOTO TO FLIP (REPLACES HOVER) ===
+                document.querySelectorAll(".member-photo").forEach(photo => {
+                    const card = photo.closest("li");
+                    let isFlipped = false;
+
+                    photo.addEventListener("click", e => {
+                        e.stopPropagation();
+                        card.classList.toggle("flipped");
+                        playFlip();
+                        isFlipped = !isFlipped;
                     });
 
-                    // Close on ESC
-                    document.addEventListener("keydown", function (e) {
-                        if (e.key === "Escape" && modal.classList.contains("active")) {
-                            closeModal();
+                    // Auto-unflip when mouse leaves card
+                    card.addEventListener("mouseleave", () => {
+                        if (isFlipped) {
+                            card.classList.remove("flipped");
+                            playFlip();
+                            isFlipped = false;
                         }
                     });
-                }
+                });
             });
         </script>
-        <!-- Image Modal -->
-        <div id="image-modal" class="modal">
-            <span class="modal-close">&times;</span>
-            <img class="modal-content" id="modal-image" src="" alt="" />
-            <div id="modal-caption"></div>
-        </div>
     </body>
 </html>
