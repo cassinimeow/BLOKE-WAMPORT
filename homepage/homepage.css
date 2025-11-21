@@ -197,14 +197,14 @@ h1 {
 }
 .front h3 {
     font-size: 1.4rem;
-    color: #aaffaa;
+    color: #1ac436;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
 /* Front – Quote with Minecraft Texture Background */
 .front .quote {
     font-size: 0.9rem;
-    color: rgb(255, 255, 255); /* Changed from #ccffcc → soft white */
+    color: rgb(255, 255, 255);
     background: url("homepage_assets/background/quote_bg.png") center/cover no-repeat;
     padding: 1rem 1.2rem;
     border-radius: 8px;
@@ -296,7 +296,7 @@ h1 {
 }
 .slide h4 {
     color: #aaffaa;
-    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
     font-size: 1.15rem;
 }
 .slide p {
