@@ -504,11 +504,15 @@
                 playBtn?.addEventListener("click", () => {
                     playClick();
                     playScreen.classList.add("fade-out");
+
                     setTimeout(() => {
                         playScreen.style.display = "none";
                         cardsContainer.classList.remove("hidden");
-                        requestAnimationFrame(() => cardsContainer.classList.add("show"));
-                    }, 600);
+                        cardsContainer.classList.add("visible");
+
+                        // THIS ONE LINE = BLUR ACTIVATED
+                        document.body.classList.add("played");
+                    }, 200);
                 });
 
                 // === CAROUSEL ===

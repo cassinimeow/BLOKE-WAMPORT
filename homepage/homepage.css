@@ -28,28 +28,47 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== Background ===== */
+/* MAIN BACKGROUND — starts sharp, gets blurred after PLAY */
 .background {
     position: fixed;
     inset: 0;
-    background: url("homepage_assets/background/background.png") repeat-x center/cover;
-    animation: moveBg 20s linear infinite;
-    z-index: -2;
-    filter: brightness(1);
+    z-index: -1;
+    background: url("homepage_assets/background/background.png") repeat-x 0 0 / auto 100%,
+        url("homepage_assets/background/background.png") repeat-x -100% 0 / auto 100%;
+    animation: scrollBg 48s linear infinite;
 }
-body::before {
+
+.background::before {
     content: "";
     position: fixed;
     inset: 0;
-    backdrop-filter: blur(1px);
     z-index: -1;
+    background: inherit;
+    background-position: -100% 0, -200% 0;
+    animation: inherit;
+
+    /* Start clean */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(0px);
+    background-color: rgba(0, 0, 0, 0.1);
+
+    /* SUPER STRONG TRANSITION */
+    transition: backdrop-filter 1.8s cubic-bezier(0.23, 1, 0.32, 1), background-color 1.8s ease !important;
 }
-@keyframes moveBg {
+
+/* WHEN BODY HAS .played → FULL BLUR */
+body.played .background::before {
+    backdrop-filter: blur(22px) !important;
+    -webkit-backdrop-filter: blur(22px) !important;
+    background-color: rgba(0, 0, 0, 0.58) !important;
+}
+
+@keyframes scrollBg {
     from {
-        background-position: 0 0;
+        background-position: 0 0, -100% 0;
     }
     to {
-        background-position: -2000px 0;
+        background-position: -100% 0, -200% 0;
     }
 }
 
@@ -263,6 +282,19 @@ h1 {
     padding: 50px 10px 0 10px;
 }
 
+/* Cards container — hidden until PLAY is clicked */
+#cards-container {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+    position: relative;
+    z-index: 1; /* Above background */
+}
+#cards-container.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 /* Carousel */
 .carousel {
     display: flex;
@@ -374,29 +406,76 @@ h1 {
     }
 }
 
-/* ===== PLAY SCREEN ===== */
+/* ===== PLAY SCREEN – Full-screen blur overlay (background always visible) ===== */
 #play-screen {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transition: opacity 0.6s ease;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+#play-screen * {
+    pointer-events: auto;
+}
+
+/* PLAY SCREEN — Covers everything with blur until PLAY is clicked */
+#play-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+#play-screen * {
+    pointer-events: auto;
+}
+
+/* PLAY SCREEN — 100% SHARP, NO BLUR AT ALL */
+#play-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    /* Same scrolling background — NO BLUR */
+    background: url("homepage_assets/background/background.png") repeat-x 0 0 / auto 100%,
+        url("homepage_assets/background/background.png") repeat-x -100% 0 / auto 100%;
+    animation: scrollBg 48s linear infinite;
+
+    /* Only a very light tint — keeps it crisp */
+    background-color: rgba(0, 0, 0, 0.15);
+    backdrop-filter: none !important; /* ←←← THIS REMOVES THE BLUR */
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Keep your existing keyframes (you already have this — just confirm it's there) */
+@keyframes scrollBg {
+    from {
+        background-position: 0 0, -100% 0;
+    }
+    to {
+        background-position: -100% 0, -200% 0;
+    }
 }
 #play-screen.fade-out {
     opacity: 0;
     pointer-events: none;
 }
+
 .play-content {
+    position: relative;
+    z-index: 1;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    max-width: 90%;
+    gap: 1.8rem;
 }
 .logo-container {
     position: relative;
@@ -410,10 +489,10 @@ h1 {
 }
 .splash-text {
     position: absolute;
-    top: 70%; /* ← Move up */
-    right: -40%; /* ← Push to the right */
-    left: 95%; /* ← Disable centering */
-    transform: rotate(-15deg); /* ← Keep tilt */
+    top: 65%;
+    right: -20%;
+    left: 85%;
+    transform: rotate(-15deg);
     color: #ffff55;
     font-family: "Mojangles", sans-serif;
     font-size: 1.8rem;
@@ -432,11 +511,11 @@ h1 {
     text-shadow: 1px 1px 2px #000;
 }
 
-/* MINECRAFT BUTTON (22×22 texture) */
+/* MINECRAFT BUTTON */
 #play-btn {
     background: url("homepage_assets/background/button_bg.png") center/contain no-repeat;
     background-size: 100% 100%;
-    width: 208px; /* 22×22 → 88px (4× scale) */
+    width: 208px;
     height: 88px;
     border: none;
     cursor: pointer;
@@ -452,9 +531,8 @@ h1 {
 }
 .btn-text {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
-    bottom: 5%;
     transform: translate(-50%, -50%);
     color: #fff;
     font-family: "Mojangles", sans-serif;
@@ -467,21 +545,67 @@ h1 {
 main.content .logo,
 main.content > p {
     display: none;
-} /* <-- they only exist on play screen */
-
-/* KEEP TIGHT PADDING */
+}
 main.content {
     padding: 3rem 2rem !important;
     margin: 0 !important;
 }
 
-/* SPLASH FLOAT ANIMATION */
+/* SPLASH FLOAT */
 @keyframes float {
     0%,
     100% {
-        transform: translate(-50%, -50%) rotate(-12deg) translateY(0);
+        transform: rotate(-15deg) translateY(0);
     }
     50% {
-        transform: translate(-50%, -50%) rotate(-12deg) translateY(-10px);
+        transform: rotate(-15deg) translateY(-12px);
     }
+}
+
+/* ===== DISABLE TEXT SELECTION & COPY ===== */
+*,
+*::before,
+*::after {
+    -webkit-user-select: none; /* Chrome, Safari, Edge */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Old IE */
+    user-select: none; /* Standard */
+    -webkit-touch-callout: none; /* iOS Safari */
+}
+
+/* Optional: Also disable right-click context menu (more hardcore) */
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* If you still want to allow selection inside the modal (optional) */
+#image-modal * {
+    user-select: text; /* re-enable only inside modal if you want */
+}
+
+/* BLURRED BACKGROUND AFTER PLAY — GUARANTEED WORKING */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.089);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body.played::after {
+    opacity: 1;
 }
