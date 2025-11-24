@@ -41,7 +41,7 @@ body::before {
     content: "";
     position: fixed;
     inset: 0;
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(1px);
     z-index: -1;
 }
 @keyframes moveBg {
