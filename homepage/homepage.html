@@ -453,14 +453,12 @@
                 clickSound.currentTime = 0;
                 clickSound.play().catch(e => console.log("Click play error:", e));
             }
-
             function playFlip() {
                 flipSound.currentTime = 0;
                 flipSound.play().catch(e => console.log("Flip play error:", e));
             }
-
             function startMusic() {
-                if (!isMusicPlaying) {
+                if (!isMusicPlaying && bgMusic) {
                     bgMusic.volume = 0.3;
                     bgMusic
                         .play()
@@ -480,15 +478,13 @@
             // === PAUSE BGM WHEN TAB IS HIDDEN ===
             document.addEventListener("visibilitychange", () => {
                 if (document.hidden) {
-                    if (isMusicPlaying) {
+                    if (isMusicPlaying && !bgMusic.paused) {
                         bgMusic.pause();
                         console.log("BGM paused (tab hidden)");
                     }
-                } else {
-                    if (isMusicPlaying) {
-                        bgMusic.play().catch(() => {});
-                        console.log("BGM resumed (tab active)");
-                    }
+                } else if (isMusicPlaying) {
+                    bgMusic.play().catch(() => {});
+                    console.log("BGM resumed (tab active)");
                 }
             });
 
@@ -500,20 +496,18 @@
                 const playBtn = document.getElementById("play-btn");
                 const playScreen = document.getElementById("play-screen");
                 const cardsContainer = document.getElementById("cards-container");
-
-                playBtn?.addEventListener("click", () => {
-                    playClick();
-                    playScreen.classList.add("fade-out");
-
-                    setTimeout(() => {
-                        playScreen.style.display = "none";
-                        cardsContainer.classList.remove("hidden");
-                        cardsContainer.classList.add("visible");
-
-                        // THIS ONE LINE = BLUR ACTIVATED
-                        document.body.classList.add("played");
-                    }, 200);
-                });
+                if (playBtn && playScreen && cardsContainer) {
+                    playBtn.addEventListener("click", () => {
+                        playClick();
+                        playScreen.classList.add("fade-out");
+                        setTimeout(() => {
+                            playScreen.style.display = "none";
+                            cardsContainer.classList.remove("hidden");
+                            cardsContainer.classList.add("visible");
+                            document.body.classList.add("played");
+                        }, 300); // Sync with CSS fade-out (0.8s)
+                    });
+                }
 
                 // === CAROUSEL ===
                 document.querySelectorAll(".arrow, .dot").forEach(el => {
@@ -521,20 +515,16 @@
                         playClick();
                         const back = e.target.closest(".back");
                         if (!back) return;
-
                         const slides = back.querySelectorAll(".slide");
                         const images = back.querySelectorAll(".back-image");
                         const dots = back.querySelectorAll(".dot");
-
                         let current = parseInt(back.querySelector(".slide.active").dataset.index);
                         let next = e.target.classList.contains("arrow")
                             ? (current + (e.target.classList.contains("left") ? -1 : 1) + slides.length) % slides.length
                             : parseInt(e.target.dataset.index);
-
                         slides.forEach(s => s.classList.remove("active"));
                         images.forEach(i => i.classList.remove("active"));
                         dots.forEach(d => d.classList.remove("active"));
-
                         slides[next].classList.add("active");
                         images[next].classList.add("active");
                         dots[next].classList.add("active");
@@ -545,7 +535,6 @@
                 const modal = document.getElementById("image-modal");
                 const modalImg = document.getElementById("modal-image");
                 const closeBtn = document.querySelector(".modal-close");
-
                 if (modal && modalImg && closeBtn) {
                     document.querySelectorAll(".back-image").forEach(img => {
                         img.style.cursor = "zoom-in";
@@ -557,11 +546,14 @@
                             modalImg.alt = img.alt;
                         });
                     });
-
                     const closeModal = () => modal.classList.remove("active");
                     closeBtn.onclick = closeModal;
                     modal.onclick = e => e.target === modal && closeModal();
-                    document.onkeydown = e => e.key === "Escape" && modal.classList.contains("active") && closeModal();
+                    document.addEventListener("keydown", e => {
+                        if (e.key === "Escape" && modal.classList.contains("active")) {
+                            closeModal();
+                        }
+                    }); // Scoped keydown, avoids blocking browser shortcuts
                 }
 
                 // === SPLASH TEXT ===
@@ -580,15 +572,12 @@
                 document.querySelectorAll(".member-photo").forEach(photo => {
                     const card = photo.closest("li");
                     let isFlipped = false;
-
                     photo.addEventListener("click", e => {
                         e.stopPropagation();
                         card.classList.toggle("flipped");
                         playFlip();
                         isFlipped = !isFlipped;
                     });
-
-                    // Auto-unflip when mouse leaves card
                     card.addEventListener("mouseleave", () => {
                         if (isFlipped) {
                             card.classList.remove("flipped");

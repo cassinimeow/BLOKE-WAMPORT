@@ -562,30 +562,18 @@ main.content {
     }
 }
 
-/* ===== DISABLE TEXT SELECTION & COPY ===== */
-*,
-*::before,
-*::after {
-    -webkit-user-select: none; /* Chrome, Safari, Edge */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Old IE */
-    user-select: none; /* Standard */
-    -webkit-touch-callout: none; /* iOS Safari */
+/* ONLY BLOCK TEXT SELECTION — KEYBOARD SHORTCUTS STILL WORK */
+* {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    user-select: none !important;
 }
-
-/* Optional: Also disable right-click context menu (more hardcore) */
-body {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+html {
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
 }
-
-/* If you still want to allow selection inside the modal (optional) */
 #image-modal * {
-    user-select: text; /* re-enable only inside modal if you want */
+    user-select: text !important;
 }
 
 /* BLURRED BACKGROUND AFTER PLAY — GUARANTEED WORKING */
@@ -600,10 +588,10 @@ body::after {
     z-index: -1;
     pointer-events: none;
     opacity: 0;
-    background: rgba(0, 0, 0, 0.089);
+    background: rgba(0, 0, 0, 0.342);
     backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    -webkit-backdrop-filter: blur(10px);
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 body.played::after {
