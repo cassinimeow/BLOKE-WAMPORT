@@ -568,27 +568,27 @@
                 const splashEl = document.getElementById("splash");
                 if (splashEl) splashEl.textContent = splashes[Math.floor(Math.random() * splashes.length)];
 
-                // ULTIMATE VERSION: Click front → flip and STAY flipped until you click again
+                // FINAL & SIMPLEST: Click front photo → flip | Click back background → unflip
                 document.querySelectorAll(".member-photo").forEach(photo => {
                     const card = photo.closest("li");
+                    const backSide = card.querySelector(".back");
 
+                    // Click front photo → flip the card
                     photo.addEventListener("click", e => {
                         e.stopPropagation();
-                        if (card.classList.contains("flipped")) {
-                            // If already flipped, clicking the front photo un-flips it
-                            card.classList.remove("flipped");
-                        } else {
-                            card.classList.add("flipped");
-                        }
+                        card.classList.add("flipped");
                         playFlip();
                     });
 
-                    // Click anywhere on the back also un-flips (optional – feels natural)
-                    card.querySelector(".back")?.addEventListener("click", () => {
-                        if (card.classList.contains("flipped")) {
-                            card.classList.remove("flipped");
-                            playFlip();
+                    // Click the back side (anywhere except buttons/images) → unflip
+                    backSide.addEventListener("click", e => {
+                        // If user clicked on arrow, dot, or image → ignore (let carousel/modal work)
+                        if (e.target.closest(".arrow") || e.target.closest(".dot") || e.target.closest(".back-image")) {
+                            return;
                         }
+                        // Otherwise → it's a background click → unflip
+                        card.classList.remove("flipped");
+                        playFlip();
                     });
                 });
             });
