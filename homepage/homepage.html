@@ -568,21 +568,26 @@
                 const splashEl = document.getElementById("splash");
                 if (splashEl) splashEl.textContent = splashes[Math.floor(Math.random() * splashes.length)];
 
-                // === CLICK PHOTO TO FLIP (REPLACES HOVER) ===
+                // ULTIMATE VERSION: Click front → flip and STAY flipped until you click again
                 document.querySelectorAll(".member-photo").forEach(photo => {
                     const card = photo.closest("li");
-                    let isFlipped = false;
+
                     photo.addEventListener("click", e => {
                         e.stopPropagation();
-                        card.classList.toggle("flipped");
+                        if (card.classList.contains("flipped")) {
+                            // If already flipped, clicking the front photo un-flips it
+                            card.classList.remove("flipped");
+                        } else {
+                            card.classList.add("flipped");
+                        }
                         playFlip();
-                        isFlipped = !isFlipped;
                     });
-                    card.addEventListener("mouseleave", () => {
-                        if (isFlipped) {
+
+                    // Click anywhere on the back also un-flips (optional – feels natural)
+                    card.querySelector(".back")?.addEventListener("click", () => {
+                        if (card.classList.contains("flipped")) {
                             card.classList.remove("flipped");
                             playFlip();
-                            isFlipped = false;
                         }
                     });
                 });
