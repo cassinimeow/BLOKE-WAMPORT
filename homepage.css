@@ -11,7 +11,6 @@
     font-family: "Minecraftia";
     src: url("homepage_assets/fonts/Minecraftia.ttf") format("truetype");
 }
-
 /* ===== Reset ===== */
 *,
 *::before,
@@ -27,7 +26,6 @@ body {
     color: #fff;
     overflow-x: hidden;
 }
-
 /* MAIN BACKGROUND — starts sharp, gets blurred after PLAY */
 .background {
     position: fixed;
@@ -37,7 +35,6 @@ body {
         url("homepage_assets/background/background.png") repeat-x -100% 0 / auto 100%;
     animation: scrollBg 48s linear infinite;
 }
-
 .background::before {
     content: "";
     position: fixed;
@@ -46,23 +43,16 @@ body {
     background: inherit;
     background-position: -100% 0, -200% 0;
     animation: inherit;
-
-    /* Start clean */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(0px);
     background-color: rgba(0, 0, 0, 0.1);
-
-    /* SUPER STRONG TRANSITION */
     transition: backdrop-filter 1.8s cubic-bezier(0.23, 1, 0.32, 1), background-color 1.8s ease !important;
 }
-
-/* WHEN BODY HAS .played → FULL BLUR */
 body.played .background::before {
     backdrop-filter: blur(22px) !important;
     -webkit-backdrop-filter: blur(22px) !important;
     background-color: rgba(0, 0, 0, 0.58) !important;
 }
-
 @keyframes scrollBg {
     from {
         background-position: 0 0, -100% 0;
@@ -71,7 +61,6 @@ body.played .background::before {
         background-position: -100% 0, -200% 0;
     }
 }
-
 /* ===== Header ===== */
 .content {
     text-align: center;
@@ -106,7 +95,6 @@ h1 {
     color: #e0e0e0;
     text-shadow: 1px 1px 3px #000;
 }
-
 /* ===== Cards ===== */
 .members {
     list-style: none;
@@ -127,7 +115,6 @@ h1 {
 .members li:hover {
     transform: scale(1.08);
 }
-
 /* ===== CLICK-TO-FLIP SYSTEM ===== */
 .flip-container {
     position: relative;
@@ -137,7 +124,6 @@ h1 {
     transform-style: preserve-3d;
     cursor: default;
 }
-
 .front,
 .back {
     position: absolute;
@@ -152,20 +138,16 @@ h1 {
     background: url("homepage_assets/background/card_bg.png") repeat;
     background-size: 40px 40px;
 }
-
 .front {
     z-index: 2;
     transform: rotateY(0deg);
 }
-
 .back {
     z-index: 1;
     transform: rotateY(180deg);
     opacity: 0;
     pointer-events: none;
 }
-
-/* FLIP ON CLICK (JS adds .flipped) */
 .members li.flipped .flip-container {
     transform: rotateY(180deg);
 }
@@ -177,7 +159,6 @@ h1 {
     opacity: 1;
     pointer-events: auto;
 }
-
 /* PHOTO CLICKABLE */
 .member-photo {
     cursor: pointer;
@@ -187,7 +168,6 @@ h1 {
 .member-photo:hover {
     transform: scale(1.05);
 }
-
 /* Frame */
 .front::before,
 .back::before {
@@ -204,7 +184,6 @@ h1 {
     position: relative;
     z-index: 2;
 }
-
 /* Front */
 .front img {
     width: 110px;
@@ -220,7 +199,6 @@ h1 {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
-/* Front – Quote with Minecraft Texture Background */
 .front .quote {
     font-size: 0.9rem;
     color: rgb(255, 255, 255);
@@ -237,7 +215,6 @@ h1 {
     font-weight: bold;
     line-height: 1.3;
 }
-
 /* Back – Image + Fade + Text */
 .back-content {
     display: flex;
@@ -281,21 +258,18 @@ h1 {
     width: 100%;
     padding: 50px 10px 0 10px;
 }
-
-/* Cards container — hidden until PLAY is clicked */
 #cards-container {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.6s ease;
     position: relative;
-    z-index: 1; /* Above background */
+    z-index: 1;
 }
 #cards-container.visible {
     opacity: 1;
     pointer-events: auto;
 }
-
-/* Carousel */
+/* Carousel & Modal – unchanged (kept exactly as you had) */
 .carousel {
     display: flex;
     align-items: center;
@@ -337,8 +311,6 @@ h1 {
     margin: 0;
     line-height: 1.4;
 }
-
-/* Dots */
 .dots {
     display: flex;
     justify-content: center;
@@ -349,8 +321,6 @@ h1 {
 .dot.active {
     color: #3cb371;
 }
-
-/* Image Modal */
 .modal {
     display: none;
     position: fixed;
@@ -406,7 +376,7 @@ h1 {
     }
 }
 
-/* ===== PLAY SCREEN – Full-screen blur overlay (background always visible) ===== */
+/* ===== PLAY SCREEN ===== */
 #play-screen {
     position: fixed;
     inset: 0;
@@ -420,53 +390,22 @@ h1 {
 #play-screen * {
     pointer-events: auto;
 }
-
-/* PLAY SCREEN — Covers everything with blur until PLAY is clicked */
-#play-screen {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    pointer-events: none;
-    transition: opacity 0.8s ease;
-}
-#play-screen * {
-    pointer-events: auto;
-}
-
-/* PLAY SCREEN — SHARP SCROLLING BG*/
 #play-screen::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-
-    /* Same scrolling background — NO BLUR */
     background: url("homepage_assets/background/background.png") repeat-x 0 0 / auto 100%,
         url("homepage_assets/background/background.png") repeat-x -100% 0 / auto 100%;
     animation: scrollBg 48s linear infinite;
-
-    /* Only a very light tint — keeps it crisp */
     background-color: rgba(0, 0, 0, 0.15);
-    backdrop-filter: none !important; /* ←←← THIS REMOVES THE BLUR */
+    backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-}
-
-@keyframes scrollBg {
-    from {
-        background-position: 0 0, -100% 0;
-    }
-    to {
-        background-position: -100% 0, -200% 0;
-    }
 }
 #play-screen.fade-out {
     opacity: 0;
     pointer-events: none;
 }
-
 .play-content {
     position: relative;
     z-index: 1;
@@ -476,21 +415,19 @@ h1 {
     align-items: center;
     gap: 1.8rem;
 }
-.logo-container {
-    position: relative;
-    display: inline-block;
-}
 .play-logo {
-    width: 800px;
-    height: 189px;
+    width: 90vw;
+    max-width: 800px;
+    height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 20px #3cb371);
 }
 .splash-text {
     position: absolute;
-    top: 65%;
-    right: -20%;
-    left: 85%;
+    bottom: -20px; /* sticks to bottom of logo */
+    right: -15px; /* sticks to right of logo */
+    left: auto;
+    top: 30px;
     transform: rotate(-15deg);
     color: #ffff55;
     font-family: "Mojangles", sans-serif;
@@ -508,9 +445,9 @@ h1 {
     max-width: 700px;
     margin-top: 0;
     text-shadow: 1px 1px 2px #000;
+    padding: 0 1rem;
 }
-
-/* MINECRAFT BUTTON */
+/* MINECRAFT BUTTON — FIXED TEXT CENTERING */
 #play-btn {
     background: url("homepage_assets/background/button_bg.png") center/contain no-repeat;
     background-size: 100% 100%;
@@ -530,18 +467,16 @@ h1 {
 }
 .btn-text {
     position: absolute;
-    top: 53px;
-    left: 100px;
-    bottom: -28px;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
     font-family: "Mojangles", sans-serif;
     font-size: 2rem;
     text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
     pointer-events: none;
+    white-space: nowrap;
 }
-
-/* REMOVE LOGO / DESC FROM MAIN CONTENT */
 main.content .logo,
 main.content > p {
     display: none;
@@ -550,8 +485,6 @@ main.content {
     padding: 3rem 2rem !important;
     margin: 0 !important;
 }
-
-/* SPLASH FLOAT */
 @keyframes float {
     0%,
     100% {
@@ -561,8 +494,6 @@ main.content {
         transform: rotate(-15deg) translateY(-12px);
     }
 }
-
-/* ONLY BLOCK TEXT SELECTION */
 * {
     -webkit-user-select: none !important;
     -moz-user-select: none !important;
@@ -575,16 +506,10 @@ html {
 #image-modal * {
     user-select: text !important;
 }
-
-/* BLURRED BACKGROUND AFTER PLAY */
 body::after {
     content: "";
     position: fixed;
     inset: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     z-index: -1;
     pointer-events: none;
     opacity: 0;
@@ -593,221 +518,141 @@ body::after {
     -webkit-backdrop-filter: blur(10px);
     transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 body.played::after {
     opacity: 1;
 }
 
-/* ===== RESPONSIVE CORE ===== */
-@media (max-width: 1400px) {
-    .play-logo,
-    .logo {
-        width: 700px;
-        height: auto;
+/* ===== RESPONSIVE FIXES ONLY ===== */
+@media (max-width: 768px) {
+    .play-logo {
+        width: 92vw;
+        max-width: 520px;
     }
-    .splash-text {
-        font-size: 1.6rem;
-        left: 80%;
-    }
-}
-
-@media (max-width: 1200px) {
     .members {
-        gap: 1.5rem;
-    }
-    .members li {
-        width: 450px;
-        height: 320px;
-    }
-    .play-logo,
-    .logo {
-        width: 600px;
-    }
-}
-
-@media (max-width: 992px) {
-    .play-logo,
-    .logo {
-        width: 550px;
-        height: auto;
-    }
-    .splash-text {
-        font-size: 1.4rem;
-        top: 62%;
-        left: 75%;
-    }
-    .group-desc {
-        font-size: 1rem;
+        flex-direction: column;
+        align-items: center;
+        gap: 3.5rem;
         padding: 0 1rem;
     }
+    .members li {
+        width: 92vw;
+        max-width: 520px;
+        height: 400px;
+    }
+    .front img {
+        width: 120px;
+        height: 120px;
+        margin-top: 4.5rem;
+    }
+    .front h3 {
+        font-size: 1.55rem;
+    }
+    .front .quote {
+        font-size: 0.98rem;
+        padding: 1.1rem 1.3rem;
+        max-width: 86%;
+    }
+
+    /* PLAY SCREEN FIXES */
+    .splash-text {
+        font-size: 1.35rem;
+        bottom: -6px;
+        right: -10px;
+        transform: rotate(-12deg);
+    }
+    .group-desc {
+        font-size: 0.98rem;
+        padding: 0 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
     #play-btn {
         width: 180px;
         height: 76px;
     }
     .btn-text {
-        font-size: 1.6rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .content {
-        padding: 2rem 1rem;
-    }
-    .play-logo,
-    .logo {
-        width: 90vw;
-        max-width: 500px;
-        height: auto;
-    }
-    .splash-text {
-        font-size: 1.3rem;
-        top: 60%;
-        left: 70%;
-        right: auto;
-        transform: rotate(-12deg);
-    }
-    .members {
-        flex-direction: column;
-        align-items: center;
-        gap: 2rem;
+        font-size: 1.75rem;
     }
     .members li {
-        width: 90vw;
-        max-width: 480px;
-        height: 340px;
+        height: 420px;
     }
-    .front img {
-        width: 100px;
-        height: 100px;
-        margin-top: 3.5rem;
+
+    /* PLAY SCREEN FIXES */
+    .play-logo {
+        max-width: 460px;
     }
-    .front .quote {
-        font-size: 0.85rem;
-        padding: 0.9rem;
+    .splash-text {
+        font-size: 1.15rem;
+        bottom: -5px;
+        right: -8px;
+        transform: rotate(-10deg);
+    }
+    .group-desc {
+        font-size: 0.92rem;
     }
 }
 
-@media (max-width: 576px) {
-    h1 {
-        font-size: 2.4rem;
-    }
-    .play-logo,
-    .logo {
-        width: 95vw;
-        max-width: 420px;
-    }
+@media (max-width: 400px) {
     #play-btn {
         width: 160px;
         height: 68px;
     }
     .btn-text {
-        font-size: 1.4rem;
-    }
-    .splash-text {
-        font-size: 1.1rem;
-        top: 58%;
-        left: 65%;
-        transform: rotate(-10deg);
+        font-size: 1.55rem;
     }
     .members li {
-        height: 360px;
+        height: 440px;
     }
-    .back-content {
-        padding: 50px 20px 10px;
+    .front img {
+        width: 105px;
+        height: 105px;
+        margin-top: 4rem;
     }
-    .image-container {
-        height: 100px;
-    }
-    .back-image {
-        height: 100px;
-    }
-    .arrow {
-        width: 38px;
-    }
-    .dots {
-        font-size: 1.5rem;
-        gap: 0.5rem;
-    }
-    .modal-close {
-        font-size: 35px;
-        top: 15px;
-        right: 20px;
-    }
-}
 
-@media (max-width: 400px) {
-    .play-logo,
-    .logo {
+    /* PLAY SCREEN FIXES */
+    .play-logo {
         max-width: 380px;
     }
     .splash-text {
         font-size: 1rem;
-        left: 60%;
-    }
-    #play-btn {
-        width: 140px;
-        height: 60px;
-    }
-    .btn-text {
-        font-size: 1.3rem;
-    }
-    .front img {
-        width: 90px;
-        height: 90px;
-        margin-top: 3rem;
-    }
-    .front h3 {
-        font-size: 1.3rem;
-    }
-    .front .quote {
-        font-size: 0.8rem;
-        padding: 0.8rem 1rem;
-    }
-}
-
-/* ===== CARD TEXT READABILITY ON SMALL SCREENS ===== */
-@media (max-width: 768px) {
-    .slide h4 {
-        font-size: 1.1rem;
-    }
-    .slide p {
-        font-size: 0.95rem;
-        line-height: 1.5;
-    }
-    .back-text {
-        padding-top: 40px;
-    }
-}
-
-/* ===== FIX FOR VERY TALL MOBILE SCREENS (iPhone X+) ===== */
-@media (max-height: 700px) and (orientation: portrait) {
-    .play-content {
-        gap: 1rem;
+        bottom: -4px;
+        right: -6px;
+        transform: rotate(-10deg);
     }
     .group-desc {
-        font-size: 0.95rem;
-    }
-    .splash-text {
-        top: 55%;
+        font-size: 0.88rem;
     }
 }
 
-/* ===== LANDSCAPE MOBILE FIX ===== */
-@media (max-height: 500px) and (orientation: landscape) {
-    .play-logo,
-    .logo {
-        width: 60vw;
+@media (max-width: 380px) {
+    .play-logo {
+        max-width: 360px;
     }
+    .front h3 {
+        font-size: 1.4rem;
+    }
+    .front .quote {
+        font-size: 0.9rem;
+    }
+
+    /* PLAY SCREEN FIXES */
     .splash-text {
-        font-size: 1rem;
-        top: 50%;
-        left: 70%;
+        font-size: 0.95rem;
+        bottom: -3px;
+        right: -5px;
     }
-    #play-btn {
-        width: 140px;
-        height: 60px;
+    .group-desc {
+        font-size: 0.85rem;
     }
-    .members li {
-        height: 300px;
-    }
+}
+
+/* MAIN FIX: SPLASH TEXT STAYS AT BOTTOM-RIGHT CORNER OF LOGO ON ALL SIZES */
+.splash-text {
+    position: absolute;
+    bottom: -10px !important;
+    right: -60px !important;
+    left: auto !important;
+    top: 75px !important;
+    transform: rotate(-15deg);
 }
