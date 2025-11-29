@@ -424,10 +424,10 @@ h1 {
 }
 .splash-text {
     position: absolute;
-    bottom: -20px; /* sticks to bottom of logo */
-    right: -15px; /* sticks to right of logo */
-    left: auto;
-    top: 30px;
+    bottom: 235px; /* distance from bottom of logo */
+    right: -50px; /* distance from right of logo */
+    left: auto !important;
+    top: auto !important;
     transform: rotate(-15deg);
     color: #ffff55;
     font-family: "Mojangles", sans-serif;
@@ -437,6 +437,7 @@ h1 {
     white-space: nowrap;
     pointer-events: none;
     animation: float 3s ease-in-out infinite;
+    transition: all 0.3s ease; /* smooth scaling */
 }
 .group-desc {
     color: #ddd;
@@ -520,139 +521,4 @@ body::after {
 }
 body.played::after {
     opacity: 1;
-}
-
-/* ===== RESPONSIVE FIXES ONLY ===== */
-@media (max-width: 768px) {
-    .play-logo {
-        width: 92vw;
-        max-width: 520px;
-    }
-    .members {
-        flex-direction: column;
-        align-items: center;
-        gap: 3.5rem;
-        padding: 0 1rem;
-    }
-    .members li {
-        width: 92vw;
-        max-width: 520px;
-        height: 400px;
-    }
-    .front img {
-        width: 120px;
-        height: 120px;
-        margin-top: 4.5rem;
-    }
-    .front h3 {
-        font-size: 1.55rem;
-    }
-    .front .quote {
-        font-size: 0.98rem;
-        padding: 1.1rem 1.3rem;
-        max-width: 86%;
-    }
-
-    /* PLAY SCREEN FIXES */
-    .splash-text {
-        font-size: 1.35rem;
-        bottom: -6px;
-        right: -10px;
-        transform: rotate(-12deg);
-    }
-    .group-desc {
-        font-size: 0.98rem;
-        padding: 0 1.2rem;
-    }
-}
-
-@media (max-width: 576px) {
-    #play-btn {
-        width: 180px;
-        height: 76px;
-    }
-    .btn-text {
-        font-size: 1.75rem;
-    }
-    .members li {
-        height: 420px;
-    }
-
-    /* PLAY SCREEN FIXES */
-    .play-logo {
-        max-width: 460px;
-    }
-    .splash-text {
-        font-size: 1.15rem;
-        bottom: -5px;
-        right: -8px;
-        transform: rotate(-10deg);
-    }
-    .group-desc {
-        font-size: 0.92rem;
-    }
-}
-
-@media (max-width: 400px) {
-    #play-btn {
-        width: 160px;
-        height: 68px;
-    }
-    .btn-text {
-        font-size: 1.55rem;
-    }
-    .members li {
-        height: 440px;
-    }
-    .front img {
-        width: 105px;
-        height: 105px;
-        margin-top: 4rem;
-    }
-
-    /* PLAY SCREEN FIXES */
-    .play-logo {
-        max-width: 380px;
-    }
-    .splash-text {
-        font-size: 1rem;
-        bottom: -4px;
-        right: -6px;
-        transform: rotate(-10deg);
-    }
-    .group-desc {
-        font-size: 0.88rem;
-    }
-}
-
-@media (max-width: 380px) {
-    .play-logo {
-        max-width: 360px;
-    }
-    .front h3 {
-        font-size: 1.4rem;
-    }
-    .front .quote {
-        font-size: 0.9rem;
-    }
-
-    /* PLAY SCREEN FIXES */
-    .splash-text {
-        font-size: 0.95rem;
-        bottom: -3px;
-        right: -5px;
-    }
-    .group-desc {
-        font-size: 0.85rem;
-    }
-}
-
-/* MAIN FIX: SPLASH TEXT STAYS AT BOTTOM-RIGHT CORNER OF LOGO ON ALL SIZES */
-.splash-text {
-    position: absolute;
-    bottom: -10px !important;
-    right: -60px !important;
-    left: auto !important;
-    top: 75px !important;
-    transform: rotate(-15deg);
 }
