@@ -258,6 +258,15 @@ h1 {
     width: 100%;
     padding: 50px 10px 0 10px;
 }
+.slide a {
+    color: #ffffff; /* green like your theme */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.slide a:hover {
+    color: #aaffaa;
+    text-shadow: 0 0 8px #3cb371;
+}
 #cards-container {
     opacity: 0;
     pointer-events: none;
